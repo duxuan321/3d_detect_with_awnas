@@ -1,0 +1,6 @@
+*.pth
+*.pkl
+*.Nova85
+
+__pycache__
+build

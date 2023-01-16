@@ -1,0 +1,630 @@
+# ---- Arch 0 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 1 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 2 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 3 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 4 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 5 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 6 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 7 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 8 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 9 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 10 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 11 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 12 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 13 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 14 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 15 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 16 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 17 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 18 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 19 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 20 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 21 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 22 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 23 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 24 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 25 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 26 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 27 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 28 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 29 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 30 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 31 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 32 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 33 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 34 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 35 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 36 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 37 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 38 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 39 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 40 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 41 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 42 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 43 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 44 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 45 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 46 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 47 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 48 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 49 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 50 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 51 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 52 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 53 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 54 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 55 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 56 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 57 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 58 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 59 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 60 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.5), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 61 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 62 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.5), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 63 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 64 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 65 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 66 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.25), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 67 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.75), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 68 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.25), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.25), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+
+# ---- Arch 69 ----
+- OrderedDict([('blocks.0.0.out_channels.1', 0.75), ('blocks.0.0.kernel_size', 3),
+  ('blocks.0.2.kernel_size', 3), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size',
+  3), ('blocks.1.0.out_channels.1', 0.75), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.kernel_size',
+  3), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.kernel_size',
+  3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 0.5), ('blocks.2.0.kernel_size',
+  3), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.kernel_size',
+  3), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])
+

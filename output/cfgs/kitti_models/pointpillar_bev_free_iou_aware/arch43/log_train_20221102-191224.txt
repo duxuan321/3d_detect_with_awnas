@@ -1,0 +1,1203 @@
+best is EPOCH 78
+2022-11-02 19:12:24,558   INFO  **********************Start logging**********************
+2022-11-02 19:12:24,559   INFO  CUDA_VISIBLE_DEVICES=6
+2022-11-02 19:12:24,560   INFO  cfg_file         ./cfgs/kitti_models/pointpillar_bev_free_iou_aware.yaml
+2022-11-02 19:12:24,560   INFO  batch_size       4
+2022-11-02 19:12:24,561   INFO  epochs           80
+2022-11-02 19:12:24,562   INFO  workers          8
+2022-11-02 19:12:24,562   INFO  extra_tag        arch43
+2022-11-02 19:12:24,563   INFO  ckpt             None
+2022-11-02 19:12:24,564   INFO  pretrained_model None
+2022-11-02 19:12:24,565   INFO  launcher         none
+2022-11-02 19:12:24,565   INFO  tcp_port         18888
+2022-11-02 19:12:24,565   INFO  sync_bn          False
+2022-11-02 19:12:24,565   INFO  fix_random_seed  False
+2022-11-02 19:12:24,565   INFO  ckpt_save_interval 1
+2022-11-02 19:12:24,565   INFO  local_rank       0
+2022-11-02 19:12:24,565   INFO  max_ckpt_save_num 30
+2022-11-02 19:12:24,565   INFO  merge_all_iters_to_one_epoch False
+2022-11-02 19:12:24,565   INFO  set_cfgs         None
+2022-11-02 19:12:24,565   INFO  max_waiting_mins 0
+2022-11-02 19:12:24,565   INFO  start_epoch      0
+2022-11-02 19:12:24,565   INFO  num_epochs_to_eval 10
+2022-11-02 19:12:24,565   INFO  save_to_file     False
+2022-11-02 19:12:24,565   INFO  quantization     False
+2022-11-02 19:12:24,565   INFO  cfg.ROOT_DIR: /home/duxuan/mvlidarnet_pcdet
+2022-11-02 19:12:24,565   INFO  cfg.LOCAL_RANK: 0
+2022-11-02 19:12:24,565   INFO  cfg.CLASS_NAMES: ['Car', 'Pedestrian', 'Cyclist']
+2022-11-02 19:12:24,566   INFO  
+cfg.DATA_CONFIG = edict()
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.DATASET: KittiDataset
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.DATA_PATH: /data/duxuan/awnas/data/kitti/detection
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [0, -39.68, -3, 69.12, 39.68, 1]
+2022-11-02 19:12:24,566   INFO  
+cfg.DATA_CONFIG.DATA_SPLIT = edict()
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2022-11-02 19:12:24,566   INFO  
+cfg.DATA_CONFIG.INFO_PATH = edict()
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['kitti_infos_train.pkl']
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['kitti_infos_val.pkl']
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.GET_ITEM_LIST: ['points']
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.FOV_POINTS_ONLY: True
+2022-11-02 19:12:24,566   INFO  
+cfg.DATA_CONFIG.DATA_AUGMENTOR = edict()
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2022-11-02 19:12:24,566   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'USE_ROAD_PLANE': True, 'DB_INFO_PATH': ['kitti_dbinfos_train.pkl'], 'PREPARE': {'filter_by_min_points': ['Car:5', 'Pedestrian:5', 'Cyclist:5'], 'filter_by_difficulty': [-1]}, 'SAMPLE_GROUPS': ['Car:15', 'Pedestrian:15', 'Cyclist:15'], 'NUM_POINT_FEATURES': 4, 'DATABASE_WITH_FAKELIDAR': False, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': False}, {'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.95, 1.05]}]
+2022-11-02 19:12:24,566   INFO  
+cfg.DATA_CONFIG.POINT_FEATURE_ENCODING = edict()
+2022-11-02 19:12:24,567   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2022-11-02 19:12:24,567   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity']
+2022-11-02 19:12:24,567   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity']
+2022-11-02 19:12:24,567   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': False}}, {'NAME': 'transform_points_to_bev', 'VOXEL_SIZE': [0.16, 0.16, 4]}]
+2022-11-02 19:12:24,568   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/kitti_dataset.yaml
+2022-11-02 19:12:24,568   INFO  
+cfg.MODEL = edict()
+2022-11-02 19:12:24,568   INFO  cfg.MODEL.NAME: CenterPoint
+2022-11-02 19:12:24,568   INFO  
+cfg.MODEL.VFE = edict()
+2022-11-02 19:12:24,568   INFO  cfg.MODEL.VFE.NAME: PlaceHolderVFE
+2022-11-02 19:12:24,568   INFO  
+cfg.MODEL.MAP_TO_BEV = edict()
+2022-11-02 19:12:24,568   INFO  cfg.MODEL.MAP_TO_BEV.NAME: BEV_scatter
+2022-11-02 19:12:24,568   INFO  cfg.MODEL.MAP_TO_BEV.NUM_BEV_FEATURES: 64
+2022-11-02 19:12:24,568   INFO  
+cfg.MODEL.BACKBONE_2D = edict()
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.BACKBONE_2D.LAYER_NUMS: [3, 5, 5]
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.BACKBONE_2D.LAYER_STRIDES: [2, 2, 2]
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.BACKBONE_2D.NUM_FILTERS: [48, 64, 128]
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.BACKBONE_2D.UPSAMPLE_STRIDES: [1, 2, 4]
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.BACKBONE_2D.NUM_UPSAMPLE_FILTERS: [128, 128, 128]
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.BACKBONE_2D.NAME: BaseBEVBackbone
+2022-11-02 19:12:24,569   INFO  
+cfg.MODEL.DENSE_HEAD = edict()
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.DENSE_HEAD.NAME: CenterHead
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.DENSE_HEAD.CLASS_NAMES_EACH_HEAD: [['Car', 'Pedestrian', 'Cyclist']]
+2022-11-02 19:12:24,569   INFO  cfg.MODEL.DENSE_HEAD.SHARED_CONV_CHANNEL: 64
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.USE_BIAS_BEFORE_NORM: True
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.NUM_HM_CONV: 2
+2022-11-02 19:12:24,570   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG = edict()
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_ORDER: ['center', 'center_z', 'dim', 'rot', 'iou']
+2022-11-02 19:12:24,570   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT = edict()
+2022-11-02 19:12:24,570   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center = edict()
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.out_channels: 2
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.num_conv: 2
+2022-11-02 19:12:24,570   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z = edict()
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z.out_channels: 1
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z.num_conv: 2
+2022-11-02 19:12:24,570   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim = edict()
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.out_channels: 3
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.num_conv: 2
+2022-11-02 19:12:24,570   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot = edict()
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.out_channels: 2
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.num_conv: 2
+2022-11-02 19:12:24,570   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou = edict()
+2022-11-02 19:12:24,570   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.out_channels: 1
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.num_conv: 2
+2022-11-02 19:12:24,571   INFO  
+cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG = edict()
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.FEATURE_MAP_STRIDE: 2
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NUM_MAX_OBJS: 500
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.GAUSSIAN_OVERLAP: 0.1
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MIN_RADIUS: 2
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.LABEL_ASSIGN_FLAG: v2
+2022-11-02 19:12:24,571   INFO  
+cfg.MODEL.DENSE_HEAD.LOSS_CONFIG = edict()
+2022-11-02 19:12:24,571   INFO  
+cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS = edict()
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loc_weight: 2.0
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+2022-11-02 19:12:24,571   INFO  
+cfg.MODEL.DENSE_HEAD.POST_PROCESSING = edict()
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POSTPROCESS_TYPE: nms
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.SCORE_THRESH: 0.1
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POST_CENTER_LIMIT_RANGE: [0, -39.68, -3, 69.12, 39.68, 1]
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.MAX_OBJ_PER_SAMPLE: 500
+2022-11-02 19:12:24,571   INFO  
+cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG = edict()
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.7
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2022-11-02 19:12:24,571   INFO  cfg.MODEL.DENSE_HEAD.WITH_IOU_LOSS: True
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.DENSE_HEAD.IOU_LOSS_TYPE: GIOU_3D
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.DENSE_HEAD.IOU_WEIGHT: 1
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.DENSE_HEAD.WITH_IOU_AWARE_LOSS: True
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.DENSE_HEAD.IOU_AWARE_WEIGHT: 1
+2022-11-02 19:12:24,572   INFO  
+cfg.MODEL.POST_PROCESSING = edict()
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.01
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: kitti
+2022-11-02 19:12:24,572   INFO  
+cfg.MODEL.POST_PROCESSING.NMS_CONFIG = edict()
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: False
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.01
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2022-11-02 19:12:24,572   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2022-11-02 19:12:24,572   INFO  
+cfg.OPTIMIZATION = edict()
+2022-11-02 19:12:24,572   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 4
+2022-11-02 19:12:24,572   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 80
+2022-11-02 19:12:24,572   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2022-11-02 19:12:24,572   INFO  cfg.OPTIMIZATION.LR: 0.003
+2022-11-02 19:12:24,572   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2022-11-02 19:12:24,572   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2022-11-02 19:12:24,573   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2022-11-02 19:12:24,573   INFO  cfg.TAG: pointpillar_bev_free_iou_aware
+2022-11-02 19:12:24,573   INFO  cfg.EXP_GROUP_PATH: cfgs/kitti_models
+2022-11-02 19:12:24,893   INFO  Database filter by min points Car: 14357 => 13532
+2022-11-02 19:12:24,893   INFO  Database filter by min points Pedestrian: 2207 => 2168
+2022-11-02 19:12:24,894   INFO  Database filter by min points Cyclist: 734 => 705
+2022-11-02 19:12:24,946   INFO  Database filter by difficulty Car: 13532 => 10759
+2022-11-02 19:12:24,963   INFO  Database filter by difficulty Pedestrian: 2168 => 2075
+2022-11-02 19:12:24,966   INFO  Database filter by difficulty Cyclist: 705 => 581
+2022-11-02 19:12:24,973   INFO  Loading KITTI dataset
+2022-11-02 19:12:25,187   INFO  Total samples for KITTI dataset: 3712
+2022-11-02 19:12:32,283   INFO  CenterPoint(
+  (vfe): PlaceHolderVFE()
+  (backbone_3d): None
+  (map_to_bev_module): BEV_scatter(
+    (conv1): Sequential(
+      (0): Sequential(
+        (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+  )
+  (pfe): None
+  (backbone_2d): BaseBEVBackbone(
+    (blocks): ModuleList(
+      (0): Sequential(
+        (0): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+        (1): Conv2d(64, 48, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(48, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(48, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(48, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(48, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(48, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(48, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(48, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+      )
+      (1): Sequential(
+        (0): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+        (1): Conv2d(48, 64, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+      (2): Sequential(
+        (0): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+        (1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+    )
+    (deblocks): ModuleList(
+      (0): Sequential(
+        (0): ConvTranspose2d(48, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): ConvTranspose2d(64, 128, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): ConvTranspose2d(128, 128, kernel_size=(4, 4), stride=(4, 4), bias=False)
+        (1): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+  )
+  (dense_head): CenterHead(
+    (shared_conv): Sequential(
+      (0): Conv2d(384, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (heads_list): ModuleList(
+      (0): SeparateHead(
+        (center): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (center_z): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (dim): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (rot): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (iou): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (hm): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+    )
+    (hm_loss_func): FocalLossCenterNet()
+    (reg_loss_func): RegLossCenterNet()
+    (iou_loss_func): IOULoss()
+    (iou_aware_loss_func): RegLossCenterNet()
+  )
+  (point_head): None
+  (roi_head): None
+)
+2022-11-02 19:12:32,286   INFO  **********************Start training cfgs/kitti_models/pointpillar_bev_free_iou_aware(arch43)**********************
+2022-11-03 04:34:35,451   INFO  **********************End training cfgs/kitti_models/pointpillar_bev_free_iou_aware(arch43)**********************
+
+
+
+2022-11-03 04:34:35,451   INFO  **********************Start evaluation cfgs/kitti_models/pointpillar_bev_free_iou_aware(arch43)**********************
+2022-11-03 04:34:35,453   INFO  Loading KITTI dataset
+2022-11-03 04:34:35,561   INFO  Total samples for KITTI dataset: 3769
+2022-11-03 04:34:35,564   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_70.pth to GPU
+2022-11-03 04:34:35,589   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 04:34:35,595   INFO  ==> Done (loaded 204/204)
+2022-11-03 04:34:35,794   INFO  *************** EPOCH 70 EVALUATION *****************
+2022-11-03 04:36:41,844   INFO  *************** Performance of EPOCH 70 *****************
+2022-11-03 04:36:41,845   INFO  Generate label finished(sec_per_example: 0.0334 second).
+2022-11-03 04:36:41,845   INFO  recall_roi_0.3: 0.000000
+2022-11-03 04:36:41,845   INFO  recall_rcnn_0.3: 0.960588
+2022-11-03 04:36:41,845   INFO  recall_roi_0.5: 0.000000
+2022-11-03 04:36:41,845   INFO  recall_rcnn_0.5: 0.914056
+2022-11-03 04:36:41,845   INFO  recall_roi_0.7: 0.000000
+2022-11-03 04:36:41,845   INFO  recall_rcnn_0.7: 0.681399
+2022-11-03 04:36:41,855   INFO  Average predicted number of objects(3769 samples): 156.809
+2022-11-03 04:38:23,839   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.0419, 89.1692, 88.3655
+bev  AP:90.4605, 87.4038, 85.5293
+3d   AP:87.2424, 76.9006, 74.7214
+aos  AP:91.02, 89.05, 88.18
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:96.9518, 91.2405, 90.0772
+bev  AP:93.9986, 88.4352, 87.1190
+3d   AP:87.3358, 77.2579, 74.9470
+aos  AP:96.91, 91.11, 89.88
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.0419, 89.1692, 88.3655
+bev  AP:93.5474, 89.9704, 89.5984
+3d   AP:93.5034, 89.5760, 89.0428
+aos  AP:91.02, 89.05, 88.18
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:96.9518, 91.2405, 90.0772
+bev  AP:97.7655, 93.3181, 92.6215
+3d   AP:97.7487, 93.0658, 92.1513
+aos  AP:96.91, 91.11, 89.88
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:63.6624, 60.4835, 58.7839
+bev  AP:60.9389, 57.0126, 53.0019
+3d   AP:54.3310, 49.6823, 46.1579
+aos  AP:51.82, 49.37, 47.78
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:63.9153, 60.1431, 57.4944
+bev  AP:60.8431, 55.9471, 52.1750
+3d   AP:53.3491, 48.5705, 44.6522
+aos  AP:50.30, 47.57, 45.14
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:63.6624, 60.4835, 58.7839
+bev  AP:73.1686, 69.5083, 65.7975
+3d   AP:73.1522, 69.4348, 65.7178
+aos  AP:51.82, 49.37, 47.78
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:63.9153, 60.1431, 57.4944
+bev  AP:74.1554, 70.3060, 66.9249
+3d   AP:74.1316, 69.8066, 66.8073
+aos  AP:50.30, 47.57, 45.14
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:87.1045, 72.0726, 68.6783
+bev  AP:82.1317, 65.6812, 62.2649
+3d   AP:79.7377, 62.2677, 59.0454
+aos  AP:86.85, 70.89, 67.51
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:89.4859, 72.8976, 69.7708
+bev  AP:83.2981, 65.8334, 61.7667
+3d   AP:80.1219, 62.3039, 58.4567
+aos  AP:89.22, 71.58, 68.48
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:87.1045, 72.0726, 68.6783
+bev  AP:87.2480, 71.2849, 67.5653
+3d   AP:87.2480, 71.2849, 67.5653
+aos  AP:86.85, 70.89, 67.51
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:89.4859, 72.8976, 69.7708
+bev  AP:90.6868, 71.9266, 68.4016
+3d   AP:90.6868, 71.9266, 68.4109
+aos  AP:89.22, 71.58, 68.48
+
+2022-11-03 04:38:23,840   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_70/val
+2022-11-03 04:38:23,840   INFO  ****************Evaluation done.*****************
+2022-11-03 04:38:23,877   INFO  Epoch 70 has been evaluated
+2022-11-03 04:38:23,879   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_71.pth to GPU
+2022-11-03 04:38:23,906   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 04:38:23,913   INFO  ==> Done (loaded 204/204)
+2022-11-03 04:38:23,917   INFO  *************** EPOCH 71 EVALUATION *****************
+2022-11-03 04:40:04,255   INFO  *************** Performance of EPOCH 71 *****************
+2022-11-03 04:40:04,256   INFO  Generate label finished(sec_per_example: 0.0266 second).
+2022-11-03 04:40:04,256   INFO  recall_roi_0.3: 0.000000
+2022-11-03 04:40:04,256   INFO  recall_rcnn_0.3: 0.960132
+2022-11-03 04:40:04,256   INFO  recall_roi_0.5: 0.000000
+2022-11-03 04:40:04,256   INFO  recall_rcnn_0.5: 0.915822
+2022-11-03 04:40:04,256   INFO  recall_roi_0.7: 0.000000
+2022-11-03 04:40:04,256   INFO  recall_rcnn_0.7: 0.676273
+2022-11-03 04:40:04,272   INFO  Average predicted number of objects(3769 samples): 154.451
+2022-11-03 04:42:00,536   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.0745, 89.0436, 88.1875
+bev  AP:90.3669, 86.9523, 85.0572
+3d   AP:86.3486, 76.7502, 73.8679
+aos  AP:91.05, 88.90, 87.97
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:96.8209, 91.0055, 89.8219
+bev  AP:93.7592, 88.1659, 86.7693
+3d   AP:86.8412, 76.9189, 74.4729
+aos  AP:96.78, 90.84, 89.59
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.0745, 89.0436, 88.1875
+bev  AP:93.4356, 89.5659, 89.0076
+3d   AP:93.3935, 89.5207, 88.9259
+aos  AP:91.05, 88.90, 87.97
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:96.8209, 91.0055, 89.8219
+bev  AP:97.6816, 93.0111, 92.1519
+3d   AP:97.6611, 92.8648, 91.8294
+aos  AP:96.78, 90.84, 89.59
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:61.0872, 58.1097, 56.8180
+bev  AP:61.5894, 57.6369, 53.7757
+3d   AP:55.8589, 51.1411, 48.6242
+aos  AP:50.74, 48.09, 46.33
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:60.7294, 57.2196, 55.1773
+bev  AP:61.5661, 56.4400, 53.2276
+3d   AP:55.1120, 49.9647, 46.5787
+aos  AP:48.76, 45.67, 43.31
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:61.0872, 58.1097, 56.8180
+bev  AP:73.3929, 69.9505, 67.9878
+3d   AP:73.1793, 69.4977, 67.7493
+aos  AP:50.74, 48.09, 46.33
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:60.7294, 57.2196, 55.1773
+bev  AP:74.2682, 70.5928, 67.8891
+3d   AP:74.0566, 70.1754, 67.5239
+aos  AP:48.76, 45.67, 43.31
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.1509, 72.7726, 69.4881
+bev  AP:82.0930, 65.6303, 61.7210
+3d   AP:79.3608, 62.9284, 59.3268
+aos  AP:87.91, 71.46, 68.14
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:91.8746, 73.7161, 70.2606
+bev  AP:83.1998, 65.6832, 61.7442
+3d   AP:80.3044, 62.7316, 58.9412
+aos  AP:91.59, 72.28, 68.81
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.1509, 72.7726, 69.4881
+bev  AP:87.7892, 70.9997, 67.8721
+3d   AP:87.7892, 70.8575, 67.8515
+aos  AP:87.91, 71.46, 68.14
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:91.8746, 73.7161, 70.2606
+bev  AP:91.4301, 71.8497, 68.2629
+3d   AP:91.2873, 71.7999, 68.1882
+aos  AP:91.59, 72.28, 68.81
+
+2022-11-03 04:42:00,537   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_71/val
+2022-11-03 04:42:00,537   INFO  ****************Evaluation done.*****************
+2022-11-03 04:42:00,575   INFO  Epoch 71 has been evaluated
+2022-11-03 04:42:00,577   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_72.pth to GPU
+2022-11-03 04:42:00,601   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 04:42:00,608   INFO  ==> Done (loaded 204/204)
+2022-11-03 04:42:00,613   INFO  *************** EPOCH 72 EVALUATION *****************
+2022-11-03 04:43:44,153   INFO  *************** Performance of EPOCH 72 *****************
+2022-11-03 04:43:44,153   INFO  Generate label finished(sec_per_example: 0.0275 second).
+2022-11-03 04:43:44,153   INFO  recall_roi_0.3: 0.000000
+2022-11-03 04:43:44,153   INFO  recall_rcnn_0.3: 0.961727
+2022-11-03 04:43:44,154   INFO  recall_roi_0.5: 0.000000
+2022-11-03 04:43:44,154   INFO  recall_rcnn_0.5: 0.917360
+2022-11-03 04:43:44,154   INFO  recall_roi_0.7: 0.000000
+2022-11-03 04:43:44,154   INFO  recall_rcnn_0.7: 0.681114
+2022-11-03 04:43:44,168   INFO  Average predicted number of objects(3769 samples): 153.092
+2022-11-03 04:45:36,975   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.1586, 89.2915, 88.4302
+bev  AP:90.4691, 87.5261, 85.6170
+3d   AP:88.0889, 77.7744, 75.5079
+aos  AP:91.14, 89.16, 88.24
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:96.8684, 92.1322, 90.4343
+bev  AP:94.0819, 89.0427, 87.3030
+3d   AP:88.2344, 78.7773, 75.8654
+aos  AP:96.84, 91.98, 90.23
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.1586, 89.2915, 88.4302
+bev  AP:94.2255, 89.9633, 89.3524
+3d   AP:92.2727, 89.8773, 89.2775
+aos  AP:91.14, 89.16, 88.24
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:96.8684, 92.1322, 90.4343
+bev  AP:97.9049, 94.0641, 92.8149
+3d   AP:97.3614, 93.6023, 92.3198
+aos  AP:96.84, 91.98, 90.23
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:63.5931, 60.7790, 58.9950
+bev  AP:61.5565, 58.1485, 54.3916
+3d   AP:56.4352, 52.3712, 49.5709
+aos  AP:51.46, 48.94, 46.93
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:63.8292, 60.2139, 57.6563
+bev  AP:61.7596, 56.9197, 53.4164
+3d   AP:55.9331, 51.0808, 47.3673
+aos  AP:49.87, 46.71, 44.02
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:63.5931, 60.7790, 58.9950
+bev  AP:74.2747, 71.1397, 67.1112
+3d   AP:74.1587, 70.8249, 66.9429
+aos  AP:51.46, 48.94, 46.93
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:63.8292, 60.2139, 57.6563
+bev  AP:75.4364, 71.9372, 68.4234
+3d   AP:75.3458, 71.6632, 68.2082
+aos  AP:49.87, 46.71, 44.02
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:89.2783, 73.8244, 70.5269
+bev  AP:83.1435, 66.3546, 63.6240
+3d   AP:79.4369, 62.9942, 59.8724
+aos  AP:89.06, 72.86, 69.53
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:92.3258, 74.9348, 71.4429
+bev  AP:84.9960, 66.6699, 63.0225
+3d   AP:80.5208, 62.9527, 59.4088
+aos  AP:92.07, 73.86, 70.33
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:89.2783, 73.8244, 70.5269
+bev  AP:89.0792, 72.1165, 68.9879
+3d   AP:89.0792, 72.1152, 68.9391
+aos  AP:89.06, 72.86, 69.53
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:92.3258, 74.9348, 71.4429
+bev  AP:92.1656, 73.1519, 69.6745
+3d   AP:92.1656, 73.1102, 69.6352
+aos  AP:92.07, 73.86, 70.33
+
+2022-11-03 04:45:36,976   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_72/val
+2022-11-03 04:45:36,976   INFO  ****************Evaluation done.*****************
+2022-11-03 04:45:37,013   INFO  Epoch 72 has been evaluated
+2022-11-03 04:45:37,015   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_73.pth to GPU
+2022-11-03 04:45:37,040   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 04:45:37,047   INFO  ==> Done (loaded 204/204)
+2022-11-03 04:45:37,051   INFO  *************** EPOCH 73 EVALUATION *****************
+2022-11-03 04:47:08,461   INFO  *************** Performance of EPOCH 73 *****************
+2022-11-03 04:47:08,461   INFO  Generate label finished(sec_per_example: 0.0243 second).
+2022-11-03 04:47:08,461   INFO  recall_roi_0.3: 0.000000
+2022-11-03 04:47:08,461   INFO  recall_rcnn_0.3: 0.960816
+2022-11-03 04:47:08,461   INFO  recall_roi_0.5: 0.000000
+2022-11-03 04:47:08,461   INFO  recall_rcnn_0.5: 0.914056
+2022-11-03 04:47:08,461   INFO  recall_roi_0.7: 0.000000
+2022-11-03 04:47:08,461   INFO  recall_rcnn_0.7: 0.684531
+2022-11-03 04:47:08,473   INFO  Average predicted number of objects(3769 samples): 157.978
+2022-11-03 04:49:17,862   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:90.9563, 89.2265, 88.4506
+bev  AP:90.3993, 87.5473, 85.8336
+3d   AP:87.6086, 77.6403, 75.5207
+aos  AP:90.94, 89.11, 88.25
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:96.8594, 91.9229, 90.3328
+bev  AP:93.9761, 89.1482, 87.4958
+3d   AP:87.7161, 78.4915, 75.8046
+aos  AP:96.83, 91.78, 90.12
+Car AP@0.70, 0.50, 0.50:
+bbox AP:90.9563, 89.2265, 88.4506
+bev  AP:93.1917, 89.8913, 89.3487
+3d   AP:93.1590, 89.8380, 89.2751
+aos  AP:90.94, 89.11, 88.25
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:96.8594, 91.9229, 90.3328
+bev  AP:97.6824, 94.1732, 92.8251
+3d   AP:97.6673, 93.7511, 92.3004
+aos  AP:96.83, 91.78, 90.12
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:64.6014, 61.4834, 59.9886
+bev  AP:62.2006, 58.3213, 54.4150
+3d   AP:56.6163, 51.5776, 49.3128
+aos  AP:53.63, 50.92, 49.21
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:65.1469, 61.1418, 58.7852
+bev  AP:62.4318, 57.2400, 53.5098
+3d   AP:55.7054, 50.6132, 47.1378
+aos  AP:52.43, 48.97, 46.63
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:64.6014, 61.4834, 59.9886
+bev  AP:74.6017, 71.2246, 67.4526
+3d   AP:74.5837, 71.0248, 67.2582
+aos  AP:53.63, 50.92, 49.21
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:65.1469, 61.1418, 58.7852
+bev  AP:75.7265, 72.0743, 68.6532
+3d   AP:75.7237, 71.4005, 68.5029
+aos  AP:52.43, 48.97, 46.63
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:87.9243, 72.8825, 70.0841
+bev  AP:82.4430, 65.8817, 63.1451
+3d   AP:79.4136, 62.8105, 59.0763
+aos  AP:87.72, 71.89, 69.10
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:91.5329, 74.0198, 70.8834
+bev  AP:83.8767, 66.3730, 62.6795
+3d   AP:80.0159, 62.5892, 58.9008
+aos  AP:91.27, 72.90, 69.76
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:87.9243, 72.8825, 70.0841
+bev  AP:88.9659, 71.2942, 68.4928
+3d   AP:88.9659, 71.2942, 68.4928
+aos  AP:87.72, 71.89, 69.10
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:91.5329, 74.0198, 70.8834
+bev  AP:92.0435, 72.5212, 69.0835
+3d   AP:92.0435, 72.5212, 69.0451
+aos  AP:91.27, 72.90, 69.76
+
+2022-11-03 04:49:17,863   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_73/val
+2022-11-03 04:49:17,863   INFO  ****************Evaluation done.*****************
+2022-11-03 04:49:17,907   INFO  Epoch 73 has been evaluated
+2022-11-03 04:49:17,909   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_74.pth to GPU
+2022-11-03 04:49:17,936   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 04:49:17,944   INFO  ==> Done (loaded 204/204)
+2022-11-03 04:49:17,948   INFO  *************** EPOCH 74 EVALUATION *****************
+2022-11-03 04:50:50,893   INFO  *************** Performance of EPOCH 74 *****************
+2022-11-03 04:50:50,893   INFO  Generate label finished(sec_per_example: 0.0247 second).
+2022-11-03 04:50:50,893   INFO  recall_roi_0.3: 0.000000
+2022-11-03 04:50:50,893   INFO  recall_rcnn_0.3: 0.963379
+2022-11-03 04:50:50,893   INFO  recall_roi_0.5: 0.000000
+2022-11-03 04:50:50,893   INFO  recall_rcnn_0.5: 0.916904
+2022-11-03 04:50:50,893   INFO  recall_roi_0.7: 0.000000
+2022-11-03 04:50:50,893   INFO  recall_rcnn_0.7: 0.687037
+2022-11-03 04:50:50,905   INFO  Average predicted number of objects(3769 samples): 151.927
+2022-11-03 04:52:50,993   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.0357, 89.2693, 88.5096
+bev  AP:90.1947, 87.3225, 85.4758
+3d   AP:88.1093, 77.9634, 76.0193
+aos  AP:91.01, 89.15, 88.32
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:96.7469, 91.6086, 90.2468
+bev  AP:93.5004, 88.6574, 87.1822
+3d   AP:88.4196, 78.8963, 76.1871
+aos  AP:96.71, 91.47, 90.04
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.0357, 89.2693, 88.5096
+bev  AP:94.3314, 90.0450, 89.5103
+3d   AP:94.2747, 89.6144, 89.0604
+aos  AP:91.01, 89.15, 88.32
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:96.7469, 91.6086, 90.2468
+bev  AP:97.8643, 93.4922, 92.6260
+3d   AP:97.8361, 93.1551, 92.1315
+aos  AP:96.71, 91.47, 90.04
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:65.3396, 62.2421, 60.3012
+bev  AP:62.6200, 58.6151, 54.4139
+3d   AP:56.9803, 52.0019, 49.8821
+aos  AP:54.54, 51.51, 49.53
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:66.0395, 61.8067, 59.1853
+bev  AP:63.1640, 57.5613, 53.8856
+3d   AP:56.4623, 51.1325, 47.6326
+aos  AP:53.87, 50.15, 47.40
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:65.3396, 62.2421, 60.3012
+bev  AP:75.5601, 71.7109, 67.5866
+3d   AP:75.4897, 71.4543, 67.4264
+aos  AP:54.54, 51.51, 49.53
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:66.0395, 61.8067, 59.1853
+bev  AP:76.6811, 72.6201, 68.8248
+3d   AP:76.6103, 71.9037, 68.6556
+aos  AP:53.87, 50.15, 47.40
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.3569, 73.3130, 70.5426
+bev  AP:84.7385, 67.3938, 64.5541
+3d   AP:80.8810, 63.8499, 60.1602
+aos  AP:88.16, 72.23, 69.51
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:91.6796, 74.6905, 71.4843
+bev  AP:87.1673, 68.1529, 64.3435
+3d   AP:81.9064, 63.3848, 59.8769
+aos  AP:91.43, 73.52, 70.32
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.3569, 73.3130, 70.5426
+bev  AP:88.2292, 72.0556, 69.0504
+3d   AP:88.2292, 72.0524, 68.9595
+aos  AP:88.16, 72.23, 69.51
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:91.6796, 74.6905, 71.4843
+bev  AP:92.0040, 73.1510, 69.6799
+3d   AP:92.0026, 73.1306, 69.6379
+aos  AP:91.43, 73.52, 70.32
+
+2022-11-03 04:52:50,994   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_74/val
+2022-11-03 04:52:50,994   INFO  ****************Evaluation done.*****************
+2022-11-03 04:52:51,035   INFO  Epoch 74 has been evaluated
+2022-11-03 04:52:51,036   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_75.pth to GPU
+2022-11-03 04:52:51,061   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 04:52:51,069   INFO  ==> Done (loaded 204/204)
+2022-11-03 04:52:51,073   INFO  *************** EPOCH 75 EVALUATION *****************
+2022-11-03 04:54:28,868   INFO  *************** Performance of EPOCH 75 *****************
+2022-11-03 04:54:28,868   INFO  Generate label finished(sec_per_example: 0.0259 second).
+2022-11-03 04:54:28,868   INFO  recall_roi_0.3: 0.000000
+2022-11-03 04:54:28,868   INFO  recall_rcnn_0.3: 0.962069
+2022-11-03 04:54:28,868   INFO  recall_roi_0.5: 0.000000
+2022-11-03 04:54:28,868   INFO  recall_rcnn_0.5: 0.917986
+2022-11-03 04:54:28,868   INFO  recall_roi_0.7: 0.000000
+2022-11-03 04:54:28,868   INFO  recall_rcnn_0.7: 0.690341
+2022-11-03 04:54:28,879   INFO  Average predicted number of objects(3769 samples): 153.640
+2022-11-03 04:56:26,624   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.1385, 89.3569, 88.5330
+bev  AP:90.1060, 87.4633, 85.6607
+3d   AP:88.0375, 77.8978, 76.1599
+aos  AP:91.12, 89.23, 88.34
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:97.0130, 92.0663, 90.5332
+bev  AP:93.6457, 88.9611, 87.3103
+3d   AP:88.2066, 78.9737, 76.4089
+aos  AP:96.98, 91.93, 90.33
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.1385, 89.3569, 88.5330
+bev  AP:94.1860, 90.0569, 89.4397
+3d   AP:94.1280, 89.9084, 89.3218
+aos  AP:91.12, 89.23, 88.34
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:97.0130, 92.0663, 90.5332
+bev  AP:97.9593, 94.2135, 92.8935
+3d   AP:97.9413, 93.7302, 92.4729
+aos  AP:96.98, 91.93, 90.33
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:64.6950, 61.8629, 60.0605
+bev  AP:62.1352, 58.3176, 54.6365
+3d   AP:57.3001, 52.4572, 49.8594
+aos  AP:53.45, 50.67, 48.58
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:65.2947, 61.2881, 58.8173
+bev  AP:62.3935, 57.1772, 53.7816
+3d   AP:56.5128, 51.2181, 47.6841
+aos  AP:52.29, 48.63, 45.83
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:64.6950, 61.8629, 60.0605
+bev  AP:74.9558, 71.3194, 67.4999
+3d   AP:74.8526, 71.0132, 67.3202
+aos  AP:53.45, 50.67, 48.58
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:65.2947, 61.2881, 58.8173
+bev  AP:76.0172, 72.2570, 68.7073
+3d   AP:75.9057, 71.5195, 68.4525
+aos  AP:52.29, 48.63, 45.83
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.7131, 73.7198, 70.6046
+bev  AP:83.2410, 65.8182, 62.9658
+3d   AP:81.0155, 63.5221, 60.3949
+aos  AP:88.54, 72.68, 69.56
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:92.0190, 74.8285, 71.4906
+bev  AP:84.8901, 66.0473, 62.6667
+3d   AP:82.3024, 63.6034, 59.9970
+aos  AP:91.79, 73.66, 70.31
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.7131, 73.7198, 70.6046
+bev  AP:88.4537, 72.0626, 69.0147
+3d   AP:88.4536, 71.9781, 68.9718
+aos  AP:88.54, 72.68, 69.56
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:92.0190, 74.8285, 71.4906
+bev  AP:92.1633, 73.1525, 69.5980
+3d   AP:92.1632, 73.1273, 69.5577
+aos  AP:91.79, 73.66, 70.31
+
+2022-11-03 04:56:26,625   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_75/val
+2022-11-03 04:56:26,625   INFO  ****************Evaluation done.*****************
+2022-11-03 04:56:26,667   INFO  Epoch 75 has been evaluated
+2022-11-03 04:56:26,669   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_76.pth to GPU
+2022-11-03 04:56:26,695   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 04:56:26,702   INFO  ==> Done (loaded 204/204)
+2022-11-03 04:56:26,708   INFO  *************** EPOCH 76 EVALUATION *****************
+2022-11-03 04:57:57,537   INFO  *************** Performance of EPOCH 76 *****************
+2022-11-03 04:57:57,538   INFO  Generate label finished(sec_per_example: 0.0241 second).
+2022-11-03 04:57:57,538   INFO  recall_roi_0.3: 0.000000
+2022-11-03 04:57:57,538   INFO  recall_rcnn_0.3: 0.962353
+2022-11-03 04:57:57,539   INFO  recall_roi_0.5: 0.000000
+2022-11-03 04:57:57,539   INFO  recall_rcnn_0.5: 0.917474
+2022-11-03 04:57:57,539   INFO  recall_roi_0.7: 0.000000
+2022-11-03 04:57:57,539   INFO  recall_rcnn_0.7: 0.688803
+2022-11-03 04:57:57,567   INFO  Average predicted number of objects(3769 samples): 152.185
+2022-11-03 05:00:01,996   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.8116, 89.3802, 88.5340
+bev  AP:90.4418, 87.5276, 85.7952
+3d   AP:88.2943, 77.9149, 76.0977
+aos  AP:91.79, 89.26, 88.34
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:97.3212, 92.2072, 90.6183
+bev  AP:94.1095, 88.9728, 87.3470
+3d   AP:88.5863, 78.9220, 76.2374
+aos  AP:97.29, 92.07, 90.41
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.8116, 89.3802, 88.5340
+bev  AP:94.4878, 90.0287, 89.4250
+3d   AP:94.4267, 89.9240, 89.3290
+aos  AP:91.79, 89.26, 88.34
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:97.3212, 92.2072, 90.6183
+bev  AP:98.1095, 94.2598, 92.9948
+3d   AP:98.0905, 93.8277, 92.4953
+aos  AP:97.29, 92.07, 90.41
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:64.5990, 61.5471, 60.0406
+bev  AP:61.7946, 58.1456, 54.3620
+3d   AP:55.5659, 51.0321, 48.5842
+aos  AP:53.75, 50.82, 49.03
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:65.2194, 61.1590, 58.7336
+bev  AP:62.2821, 57.1590, 53.4953
+3d   AP:54.6889, 49.8322, 46.3259
+aos  AP:52.66, 49.00, 46.36
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:64.5990, 61.5471, 60.0406
+bev  AP:74.9227, 70.9808, 67.2941
+3d   AP:74.8126, 70.8740, 67.1774
+aos  AP:53.75, 50.82, 49.03
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:65.2194, 61.1590, 58.7336
+bev  AP:75.9703, 71.5855, 68.5705
+3d   AP:75.8902, 71.4204, 68.3980
+aos  AP:52.66, 49.00, 46.36
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.7085, 73.9523, 70.9281
+bev  AP:83.6201, 66.5311, 63.1155
+3d   AP:80.5077, 63.2700, 60.1508
+aos  AP:88.54, 72.85, 69.87
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:91.9700, 74.9302, 71.6521
+bev  AP:85.9090, 66.7058, 63.0838
+3d   AP:81.6491, 63.3647, 59.8388
+aos  AP:91.77, 73.71, 70.45
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.7085, 73.9523, 70.9281
+bev  AP:88.2826, 71.8552, 68.9794
+3d   AP:88.2825, 71.8552, 68.9779
+aos  AP:88.54, 72.85, 69.87
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:91.9700, 74.9302, 71.6521
+bev  AP:92.1311, 73.0343, 69.5031
+3d   AP:92.1311, 73.0342, 69.5006
+aos  AP:91.77, 73.71, 70.45
+
+2022-11-03 05:00:01,997   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_76/val
+2022-11-03 05:00:01,997   INFO  ****************Evaluation done.*****************
+2022-11-03 05:00:02,042   INFO  Epoch 76 has been evaluated
+2022-11-03 05:00:02,044   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_77.pth to GPU
+2022-11-03 05:00:02,069   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 05:00:02,077   INFO  ==> Done (loaded 204/204)
+2022-11-03 05:00:02,082   INFO  *************** EPOCH 77 EVALUATION *****************
+2022-11-03 05:01:32,242   INFO  *************** Performance of EPOCH 77 *****************
+2022-11-03 05:01:32,242   INFO  Generate label finished(sec_per_example: 0.0239 second).
+2022-11-03 05:01:32,242   INFO  recall_roi_0.3: 0.000000
+2022-11-03 05:01:32,242   INFO  recall_rcnn_0.3: 0.961385
+2022-11-03 05:01:32,243   INFO  recall_roi_0.5: 0.000000
+2022-11-03 05:01:32,243   INFO  recall_rcnn_0.5: 0.917701
+2022-11-03 05:01:32,243   INFO  recall_roi_0.7: 0.000000
+2022-11-03 05:01:32,243   INFO  recall_rcnn_0.7: 0.694384
+2022-11-03 05:01:32,263   INFO  Average predicted number of objects(3769 samples): 151.046
+2022-11-03 05:03:36,065   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.7555, 89.3770, 88.6329
+bev  AP:90.3025, 87.3765, 85.7088
+3d   AP:88.4729, 78.2047, 76.7035
+aos  AP:91.73, 89.25, 88.44
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:97.3442, 92.2647, 90.8274
+bev  AP:93.8626, 88.7850, 87.2813
+3d   AP:89.4467, 79.5875, 77.0755
+aos  AP:97.31, 92.13, 90.61
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.7555, 89.3770, 88.6329
+bev  AP:93.8475, 90.0087, 89.4270
+3d   AP:93.8000, 89.8948, 89.3463
+aos  AP:91.73, 89.25, 88.44
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:97.3442, 92.2647, 90.8274
+bev  AP:97.9729, 94.2529, 93.0021
+3d   AP:97.9583, 93.8431, 92.5944
+aos  AP:97.31, 92.13, 90.61
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:65.5175, 62.4899, 60.5446
+bev  AP:62.5745, 59.0461, 55.2196
+3d   AP:57.1409, 52.2639, 50.0622
+aos  AP:54.37, 51.61, 49.45
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:66.3220, 62.0445, 59.4828
+bev  AP:63.0974, 57.9406, 54.3742
+3d   AP:56.5629, 51.3925, 47.9039
+aos  AP:53.34, 49.74, 46.89
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:65.5175, 62.4899, 60.5446
+bev  AP:75.6667, 71.7237, 67.6911
+3d   AP:75.5583, 71.6416, 67.5256
+aos  AP:54.37, 51.61, 49.45
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:66.3220, 62.0445, 59.4828
+bev  AP:76.6817, 72.2609, 69.1202
+3d   AP:76.6059, 72.0680, 68.9471
+aos  AP:53.34, 49.74, 46.89
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.5568, 73.7900, 71.0004
+bev  AP:85.0910, 67.4884, 64.2866
+3d   AP:81.2842, 63.7553, 60.3663
+aos  AP:88.38, 72.75, 69.95
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:91.8680, 74.9569, 71.7882
+bev  AP:87.3882, 67.9316, 64.1038
+3d   AP:82.1040, 63.9375, 60.2184
+aos  AP:91.67, 73.79, 70.60
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.5568, 73.7900, 71.0004
+bev  AP:88.3259, 72.1319, 69.2395
+3d   AP:88.3259, 72.1101, 69.2095
+aos  AP:88.38, 72.75, 69.95
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:91.8680, 74.9569, 71.7882
+bev  AP:92.2383, 73.3600, 69.8141
+3d   AP:92.2383, 73.3535, 69.7979
+aos  AP:91.67, 73.79, 70.60
+
+2022-11-03 05:03:36,066   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_77/val
+2022-11-03 05:03:36,066   INFO  ****************Evaluation done.*****************
+2022-11-03 05:03:36,101   INFO  Epoch 77 has been evaluated
+2022-11-03 05:03:36,103   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_78.pth to GPU
+2022-11-03 05:03:36,181   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 05:03:36,188   INFO  ==> Done (loaded 204/204)
+2022-11-03 05:03:36,192   INFO  *************** EPOCH 78 EVALUATION *****************
+2022-11-03 05:05:07,788   INFO  *************** Performance of EPOCH 78 *****************
+2022-11-03 05:05:07,788   INFO  Generate label finished(sec_per_example: 0.0243 second).
+2022-11-03 05:05:07,788   INFO  recall_roi_0.3: 0.000000
+2022-11-03 05:05:07,789   INFO  recall_rcnn_0.3: 0.962467
+2022-11-03 05:05:07,789   INFO  recall_roi_0.5: 0.000000
+2022-11-03 05:05:07,789   INFO  recall_rcnn_0.5: 0.917303
+2022-11-03 05:05:07,789   INFO  recall_roi_0.7: 0.000000
+2022-11-03 05:05:07,789   INFO  recall_rcnn_0.7: 0.691252
+2022-11-03 05:05:07,809   INFO  Average predicted number of objects(3769 samples): 152.609
+2022-11-03 05:07:14,509   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.8258, 89.3786, 88.6225
+bev  AP:90.0744, 87.3573, 85.5210
+3d   AP:88.4603, 78.1885, 76.5399
+aos  AP:91.80, 89.25, 88.42
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:97.2436, 92.0654, 90.6777
+bev  AP:93.6779, 88.7340, 87.1903
+3d   AP:88.9059, 79.3525, 76.7669
+aos  AP:97.21, 91.92, 90.46
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.8258, 89.3786, 88.6225
+bev  AP:94.3025, 90.0052, 89.4841
+3d   AP:94.2437, 89.8968, 89.3952
+aos  AP:91.80, 89.25, 88.42
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:97.2436, 92.0654, 90.6777
+bev  AP:97.9827, 94.0779, 92.9741
+3d   AP:97.9631, 93.5900, 92.5042
+aos  AP:97.21, 91.92, 90.46
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:65.5812, 62.5665, 60.7841
+bev  AP:62.5170, 58.7105, 54.8759
+3d   AP:56.2344, 51.6811, 49.0138
+aos  AP:54.79, 51.99, 49.98
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:66.3441, 62.2055, 59.6019
+bev  AP:63.0058, 57.6625, 54.0489
+3d   AP:55.5608, 50.6443, 46.9779
+aos  AP:53.79, 50.23, 47.35
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:65.5812, 62.5665, 60.7841
+bev  AP:75.7074, 71.6647, 67.7807
+3d   AP:75.6238, 71.3460, 67.6100
+aos  AP:54.79, 51.99, 49.98
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:66.3441, 62.2055, 59.6019
+bev  AP:76.5943, 72.6746, 69.1347
+3d   AP:76.5206, 72.4521, 68.8941
+aos  AP:53.79, 50.23, 47.35
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.5891, 73.6608, 70.8726
+bev  AP:84.1560, 66.9876, 63.6929
+3d   AP:81.5592, 64.0302, 60.6047
+aos  AP:88.41, 72.61, 69.85
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:91.9661, 75.1374, 71.8192
+bev  AP:86.3699, 67.4501, 63.5609
+3d   AP:82.5701, 64.2161, 60.3249
+aos  AP:91.76, 73.97, 70.63
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.5891, 73.6608, 70.8726
+bev  AP:88.5080, 72.2832, 69.2138
+3d   AP:88.5080, 72.2832, 69.1630
+aos  AP:88.41, 72.61, 69.85
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:91.9661, 75.1374, 71.8192
+bev  AP:92.3501, 73.4834, 69.9526
+3d   AP:92.3501, 73.4744, 69.9308
+aos  AP:91.76, 73.97, 70.63
+
+2022-11-03 05:07:14,510   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_78/val
+2022-11-03 05:07:14,510   INFO  ****************Evaluation done.*****************
+2022-11-03 05:07:14,542   INFO  Epoch 78 has been evaluated
+2022-11-03 05:07:14,543   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_79.pth to GPU
+2022-11-03 05:07:14,584   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 05:07:14,591   INFO  ==> Done (loaded 204/204)
+2022-11-03 05:07:14,595   INFO  *************** EPOCH 79 EVALUATION *****************
+2022-11-03 05:08:45,066   INFO  *************** Performance of EPOCH 79 *****************
+2022-11-03 05:08:45,066   INFO  Generate label finished(sec_per_example: 0.0240 second).
+2022-11-03 05:08:45,067   INFO  recall_roi_0.3: 0.000000
+2022-11-03 05:08:45,067   INFO  recall_rcnn_0.3: 0.962239
+2022-11-03 05:08:45,067   INFO  recall_roi_0.5: 0.000000
+2022-11-03 05:08:45,067   INFO  recall_rcnn_0.5: 0.918328
+2022-11-03 05:08:45,067   INFO  recall_roi_0.7: 0.000000
+2022-11-03 05:08:45,067   INFO  recall_rcnn_0.7: 0.690853
+2022-11-03 05:08:45,087   INFO  Average predicted number of objects(3769 samples): 153.219
+2022-11-03 05:10:45,103   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.7635, 89.3783, 88.6063
+bev  AP:90.3200, 87.3101, 85.6282
+3d   AP:88.5156, 78.1301, 76.5153
+aos  AP:91.74, 89.25, 88.42
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:97.3553, 92.1717, 90.7672
+bev  AP:93.9325, 88.6587, 87.1896
+3d   AP:89.5930, 79.2895, 76.7588
+aos  AP:97.32, 92.03, 90.56
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.7635, 89.3783, 88.6063
+bev  AP:94.2247, 90.0141, 89.4288
+3d   AP:94.1682, 89.9165, 89.3538
+aos  AP:91.74, 89.25, 88.42
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:97.3553, 92.1717, 90.7672
+bev  AP:98.0799, 94.4098, 93.1335
+3d   AP:98.0637, 94.0060, 92.6215
+aos  AP:97.32, 92.03, 90.56
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:64.8953, 61.7370, 59.9781
+bev  AP:62.4861, 58.7287, 55.0434
+3d   AP:57.1085, 52.2859, 49.8719
+aos  AP:53.52, 50.58, 48.72
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:65.4813, 61.2867, 58.8897
+bev  AP:62.8249, 57.7249, 54.6048
+3d   AP:56.6933, 51.3561, 47.7581
+aos  AP:52.25, 48.63, 46.05
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:64.8953, 61.7370, 59.9781
+bev  AP:75.2980, 71.5369, 67.7211
+3d   AP:75.2248, 71.2871, 67.5712
+aos  AP:53.52, 50.58, 48.72
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:65.4813, 61.2867, 58.8897
+bev  AP:76.4732, 72.5726, 68.9577
+3d   AP:76.3991, 72.3975, 68.8107
+aos  AP:52.25, 48.63, 46.05
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.5866, 73.7347, 70.8429
+bev  AP:83.9397, 66.6320, 63.7101
+3d   AP:81.2247, 63.7990, 60.5392
+aos  AP:88.41, 72.73, 69.85
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:92.0448, 74.9723, 71.6933
+bev  AP:86.2205, 67.1041, 63.4053
+3d   AP:82.1291, 63.9662, 60.2463
+aos  AP:91.84, 73.83, 70.55
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.5866, 73.7347, 70.8429
+bev  AP:88.3217, 71.9399, 69.1897
+3d   AP:88.3217, 71.9088, 69.1891
+aos  AP:88.41, 72.73, 69.85
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:92.0448, 74.9723, 71.6933
+bev  AP:92.1256, 73.2895, 69.8980
+3d   AP:92.1256, 73.2809, 69.8853
+aos  AP:91.84, 73.83, 70.55
+
+2022-11-03 05:10:45,110   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_79/val
+2022-11-03 05:10:45,110   INFO  ****************Evaluation done.*****************
+2022-11-03 05:10:45,226   INFO  Epoch 79 has been evaluated
+2022-11-03 05:10:45,228   INFO  ==> Loading parameters from checkpoint /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/ckpt/checkpoint_epoch_80.pth to GPU
+2022-11-03 05:10:45,357   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-03 05:10:45,370   INFO  ==> Done (loaded 204/204)
+2022-11-03 05:10:45,377   INFO  *************** EPOCH 80 EVALUATION *****************
+2022-11-03 05:12:22,902   INFO  *************** Performance of EPOCH 80 *****************
+2022-11-03 05:12:22,902   INFO  Generate label finished(sec_per_example: 0.0259 second).
+2022-11-03 05:12:22,902   INFO  recall_roi_0.3: 0.000000
+2022-11-03 05:12:22,902   INFO  recall_rcnn_0.3: 0.962069
+2022-11-03 05:12:22,903   INFO  recall_roi_0.5: 0.000000
+2022-11-03 05:12:22,903   INFO  recall_rcnn_0.5: 0.917758
+2022-11-03 05:12:22,903   INFO  recall_roi_0.7: 0.000000
+2022-11-03 05:12:22,903   INFO  recall_rcnn_0.7: 0.692106
+2022-11-03 05:12:22,930   INFO  Average predicted number of objects(3769 samples): 153.352
+2022-11-03 05:14:08,537   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:91.6883, 89.3881, 88.6109
+bev  AP:90.2564, 87.2535, 85.5403
+3d   AP:88.5458, 78.2008, 76.5963
+aos  AP:91.67, 89.26, 88.42
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:97.3261, 92.1190, 90.6271
+bev  AP:93.7482, 88.6161, 87.1342
+3d   AP:89.4924, 79.4433, 76.8867
+aos  AP:97.30, 91.98, 90.42
+Car AP@0.70, 0.50, 0.50:
+bbox AP:91.6883, 89.3881, 88.6109
+bev  AP:94.0500, 90.0322, 89.4938
+3d   AP:93.9991, 89.9148, 89.4077
+aos  AP:91.67, 89.26, 88.42
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:97.3261, 92.1190, 90.6271
+bev  AP:98.0413, 94.1295, 92.9462
+3d   AP:98.0250, 93.7281, 92.4859
+aos  AP:97.30, 91.98, 90.42
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:65.3999, 62.3238, 60.3892
+bev  AP:62.1354, 58.5164, 54.6936
+3d   AP:57.6629, 52.6563, 50.1531
+aos  AP:53.93, 51.17, 48.90
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:66.1613, 61.8247, 59.3132
+bev  AP:62.6165, 57.4016, 53.7704
+3d   AP:57.1305, 51.6838, 48.1057
+aos  AP:52.79, 49.17, 46.36
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:65.3999, 62.3238, 60.3892
+bev  AP:75.7809, 71.8615, 68.0101
+3d   AP:75.6865, 71.6791, 67.8809
+aos  AP:53.93, 51.17, 48.90
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:66.1613, 61.8247, 59.3132
+bev  AP:76.8454, 72.8468, 69.2081
+3d   AP:76.7502, 72.1892, 69.0203
+aos  AP:52.79, 49.17, 46.36
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.8214, 73.3924, 70.6393
+bev  AP:83.5594, 66.5909, 63.7057
+3d   AP:80.5705, 63.4024, 60.1902
+aos  AP:88.64, 72.38, 69.66
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:91.9204, 74.6645, 71.3200
+bev  AP:85.9443, 67.0226, 63.4585
+3d   AP:81.7650, 63.2978, 59.8524
+aos  AP:91.71, 73.54, 70.19
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.8214, 73.3924, 70.6393
+bev  AP:90.1786, 71.6354, 68.9410
+3d   AP:90.1786, 71.6353, 68.9231
+aos  AP:88.64, 72.38, 69.66
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:91.9204, 74.6645, 71.3200
+bev  AP:92.6748, 72.9230, 69.5326
+3d   AP:92.6748, 72.9207, 69.5249
+aos  AP:91.71, 73.54, 70.19
+
+2022-11-03 05:14:08,538   INFO  Result is save to /home/duxuan/mvlidarnet_pcdet/output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/arch43/eval/eval_with_train/epoch_80/val
+2022-11-03 05:14:08,538   INFO  ****************Evaluation done.*****************
+2022-11-03 05:14:08,602   INFO  Epoch 80 has been evaluated
+2022-11-03 05:14:38,632   INFO  **********************End evaluation cfgs/kitti_models/pointpillar_bev_free_iou_aware(arch43)**********************

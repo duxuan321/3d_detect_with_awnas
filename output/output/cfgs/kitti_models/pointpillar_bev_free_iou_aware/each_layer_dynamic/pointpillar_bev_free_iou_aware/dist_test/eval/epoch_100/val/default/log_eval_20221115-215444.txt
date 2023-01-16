@@ -1,0 +1,912 @@
+2022-11-15 21:54:44,950   INFO  **********************Start logging**********************
+2022-11-15 21:54:44,951   INFO  CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+2022-11-15 21:54:44,951   INFO  total_batch_size: 64
+2022-11-15 21:54:44,951   INFO  cfg_file         ../output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/each_layer_dynamic/pointpillar_bev_free_iou_aware.yaml
+2022-11-15 21:54:44,951   INFO  sample_num       None
+2022-11-15 21:54:44,951   INFO  batch_size       8
+2022-11-15 21:54:44,951   INFO  workers          4
+2022-11-15 21:54:44,951   INFO  extra_tag        dist_test
+2022-11-15 21:54:44,952   INFO  ckpt             ../output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/each_layer_dynamic/ckpt/checkpoint_epoch_100.pth
+2022-11-15 21:54:44,952   INFO  launcher         pytorch
+2022-11-15 21:54:44,952   INFO  tcp_port         18888
+2022-11-15 21:54:44,952   INFO  local_rank       0
+2022-11-15 21:54:44,952   INFO  set_cfgs         None
+2022-11-15 21:54:44,952   INFO  max_waiting_mins 30
+2022-11-15 21:54:44,952   INFO  start_epoch      0
+2022-11-15 21:54:44,952   INFO  eval_tag         default
+2022-11-15 21:54:44,952   INFO  eval_all         False
+2022-11-15 21:54:44,952   INFO  ckpt_dir         None
+2022-11-15 21:54:44,953   INFO  save_to_file     False
+2022-11-15 21:54:44,953   INFO  yaml_file_path   2000_sample.yaml
+2022-11-15 21:54:44,953   INFO  cfg.ROOT_DIR: /home/duxuan/mvlidarnet_pcdet
+2022-11-15 21:54:44,953   INFO  cfg.LOCAL_RANK: 0
+2022-11-15 21:54:44,953   INFO  cfg.CLASS_NAMES: ['Car', 'Pedestrian', 'Cyclist']
+2022-11-15 21:54:44,953   INFO  
+cfg.DATA_CONFIG = edict()
+2022-11-15 21:54:44,953   INFO  cfg.DATA_CONFIG.DATASET: KittiDataset
+2022-11-15 21:54:44,953   INFO  cfg.DATA_CONFIG.DATA_PATH: /data/duxuan/awnas/data/kitti/detection
+2022-11-15 21:54:44,953   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [0, -39.68, -3, 69.12, 39.68, 1]
+2022-11-15 21:54:44,954   INFO  
+cfg.DATA_CONFIG.DATA_SPLIT = edict()
+2022-11-15 21:54:44,954   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2022-11-15 21:54:44,954   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2022-11-15 21:54:44,954   INFO  
+cfg.DATA_CONFIG.INFO_PATH = edict()
+2022-11-15 21:54:44,954   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['kitti_infos_train.pkl']
+2022-11-15 21:54:44,954   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['kitti_infos_val.pkl']
+2022-11-15 21:54:44,954   INFO  cfg.DATA_CONFIG.GET_ITEM_LIST: ['points']
+2022-11-15 21:54:44,954   INFO  cfg.DATA_CONFIG.FOV_POINTS_ONLY: True
+2022-11-15 21:54:44,954   INFO  
+cfg.DATA_CONFIG.DATA_AUGMENTOR = edict()
+2022-11-15 21:54:44,954   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2022-11-15 21:54:44,955   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'USE_ROAD_PLANE': True, 'DB_INFO_PATH': ['kitti_dbinfos_train.pkl'], 'PREPARE': {'filter_by_min_points': ['Car:5', 'Pedestrian:5', 'Cyclist:5'], 'filter_by_difficulty': [-1]}, 'SAMPLE_GROUPS': ['Car:15', 'Pedestrian:15', 'Cyclist:15'], 'NUM_POINT_FEATURES': 4, 'DATABASE_WITH_FAKELIDAR': False, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': False}, {'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.95, 1.05]}]
+2022-11-15 21:54:44,955   INFO  
+cfg.DATA_CONFIG.POINT_FEATURE_ENCODING = edict()
+2022-11-15 21:54:44,955   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2022-11-15 21:54:44,955   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity']
+2022-11-15 21:54:44,955   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity']
+2022-11-15 21:54:44,955   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': False}}, {'NAME': 'transform_points_to_bev', 'VOXEL_SIZE': [0.16, 0.16, 4]}]
+2022-11-15 21:54:44,955   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/kitti_dataset.yaml
+2022-11-15 21:54:44,955   INFO  
+cfg.MODEL = edict()
+2022-11-15 21:54:44,956   INFO  cfg.MODEL.NAME: CenterPoint
+2022-11-15 21:54:44,956   INFO  
+cfg.MODEL.VFE = edict()
+2022-11-15 21:54:44,956   INFO  cfg.MODEL.VFE.NAME: PlaceHolderVFE
+2022-11-15 21:54:44,956   INFO  
+cfg.MODEL.MAP_TO_BEV = edict()
+2022-11-15 21:54:44,956   INFO  cfg.MODEL.MAP_TO_BEV.NAME: BEV_mvlidarnet
+2022-11-15 21:54:44,956   INFO  cfg.MODEL.MAP_TO_BEV.NUM_BEV_FEATURES: 3
+2022-11-15 21:54:44,956   INFO  
+cfg.MODEL.BACKBONE_2D = edict()
+2022-11-15 21:54:44,956   INFO  cfg.MODEL.BACKBONE_2D.LAYER_NUMS: [3, 5, 5]
+2022-11-15 21:54:44,956   INFO  cfg.MODEL.BACKBONE_2D.LAYER_STRIDES: [2, 2, 2]
+2022-11-15 21:54:44,956   INFO  cfg.MODEL.BACKBONE_2D.NUM_FILTERS: [64, 128, 256]
+2022-11-15 21:54:44,957   INFO  cfg.MODEL.BACKBONE_2D.UPSAMPLE_STRIDES: [1, 2, 4]
+2022-11-15 21:54:44,957   INFO  cfg.MODEL.BACKBONE_2D.NUM_UPSAMPLE_FILTERS: [128, 128, 128]
+2022-11-15 21:54:44,957   INFO  cfg.MODEL.BACKBONE_2D.NAME: BEVBackboneSuperNet
+2022-11-15 21:54:44,957   INFO  
+cfg.MODEL.BACKBONE_2D.SEARCH_CFG = edict()
+2022-11-15 21:54:44,957   INFO  
+cfg.MODEL.BACKBONE_2D.SEARCH_CFG.search_space_cfg = edict()
+2022-11-15 21:54:44,957   INFO  
+cfg.MODEL.BACKBONE_2D.SEARCH_CFG.supernet_cfg = edict()
+2022-11-15 21:54:44,957   INFO  cfg.MODEL.BACKBONE_2D.SEARCH_CFG.supernet_cfg.mult_ratio_choices: [0.125, 0.25, 0.35, 0.5, 0.75, 1]
+2022-11-15 21:54:44,957   INFO  cfg.MODEL.BACKBONE_2D.SEARCH_CFG.supernet_cfg.channels: [64, 128, 256]
+2022-11-15 21:54:44,957   INFO  cfg.MODEL.BACKBONE_2D.SEARCH_CFG.supernet_cfg.kernel_sizes: [3]
+2022-11-15 21:54:44,958   INFO  
+cfg.MODEL.BACKBONE_2D.SEARCH_CFG.supernet_cfg.schedule_cfg = edict()
+2022-11-15 21:54:44,958   INFO  cfg.MODEL.BACKBONE_2D.SEARCH_CFG.supernet_cfg.schedule_cfg.kernel_sizes: [{'epoch': 0, 'choices': [3]}]
+2022-11-15 21:54:44,958   INFO  cfg.MODEL.BACKBONE_2D.SEARCH_CFG.supernet_cfg.schedule_cfg.mult_ratio_choices: [{'epoch': 0, 'choices': [1]}, {'epoch': 51, 'choices': [0.75, 1]}, {'epoch': 61, 'choices': [0.5, 0.75, 1]}, {'epoch': 71, 'choices': [0.35, 0.5, 0.75, 1]}, {'epoch': 81, 'choices': [0.25, 0.35, 0.5, 0.75, 1]}, {'epoch': 91, 'choices': [0.125, 0.25, 0.35, 0.5, 0.75, 1]}]
+2022-11-15 21:54:44,958   INFO  
+cfg.MODEL.DENSE_HEAD = edict()
+2022-11-15 21:54:44,958   INFO  cfg.MODEL.DENSE_HEAD.NAME: CenterHead
+2022-11-15 21:54:44,958   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2022-11-15 21:54:44,958   INFO  cfg.MODEL.DENSE_HEAD.CLASS_NAMES_EACH_HEAD: [['Car', 'Pedestrian', 'Cyclist']]
+2022-11-15 21:54:44,958   INFO  cfg.MODEL.DENSE_HEAD.SHARED_CONV_CHANNEL: 64
+2022-11-15 21:54:44,958   INFO  cfg.MODEL.DENSE_HEAD.USE_BIAS_BEFORE_NORM: True
+2022-11-15 21:54:44,959   INFO  cfg.MODEL.DENSE_HEAD.NUM_HM_CONV: 2
+2022-11-15 21:54:44,959   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG = edict()
+2022-11-15 21:54:44,959   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_ORDER: ['center', 'center_z', 'dim', 'rot', 'iou']
+2022-11-15 21:54:44,959   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT = edict()
+2022-11-15 21:54:44,959   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center = edict()
+2022-11-15 21:54:44,959   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.out_channels: 2
+2022-11-15 21:54:44,959   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.num_conv: 2
+2022-11-15 21:54:44,959   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z = edict()
+2022-11-15 21:54:44,959   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z.out_channels: 1
+2022-11-15 21:54:44,959   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z.num_conv: 2
+2022-11-15 21:54:44,960   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim = edict()
+2022-11-15 21:54:44,960   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.out_channels: 3
+2022-11-15 21:54:44,960   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.num_conv: 2
+2022-11-15 21:54:44,960   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot = edict()
+2022-11-15 21:54:44,960   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.out_channels: 2
+2022-11-15 21:54:44,960   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.num_conv: 2
+2022-11-15 21:54:44,960   INFO  
+cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou = edict()
+2022-11-15 21:54:44,960   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.out_channels: 1
+2022-11-15 21:54:44,960   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.num_conv: 2
+2022-11-15 21:54:44,960   INFO  
+cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG = edict()
+2022-11-15 21:54:44,961   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.FEATURE_MAP_STRIDE: 2
+2022-11-15 21:54:44,961   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NUM_MAX_OBJS: 500
+2022-11-15 21:54:44,961   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.GAUSSIAN_OVERLAP: 0.1
+2022-11-15 21:54:44,961   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MIN_RADIUS: 2
+2022-11-15 21:54:44,961   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.LABEL_ASSIGN_FLAG: v2
+2022-11-15 21:54:44,961   INFO  
+cfg.MODEL.DENSE_HEAD.LOSS_CONFIG = edict()
+2022-11-15 21:54:44,961   INFO  
+cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS = edict()
+2022-11-15 21:54:44,961   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2022-11-15 21:54:44,961   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loc_weight: 2.0
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+2022-11-15 21:54:44,962   INFO  
+cfg.MODEL.DENSE_HEAD.POST_PROCESSING = edict()
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POSTPROCESS_TYPE: nms
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.SCORE_THRESH: 0.1
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POST_CENTER_LIMIT_RANGE: [0, -39.68, -3, 69.12, 39.68, 1]
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.MAX_OBJ_PER_SAMPLE: 500
+2022-11-15 21:54:44,962   INFO  
+cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG = edict()
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.7
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.WITH_IOU_LOSS: True
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.IOU_LOSS_TYPE: GIOU_3D
+2022-11-15 21:54:44,962   INFO  cfg.MODEL.DENSE_HEAD.IOU_WEIGHT: 1
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.DENSE_HEAD.WITH_IOU_AWARE_LOSS: True
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.DENSE_HEAD.IOU_AWARE_WEIGHT: 1
+2022-11-15 21:54:44,963   INFO  
+cfg.MODEL.POST_PROCESSING = edict()
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.01
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: kitti
+2022-11-15 21:54:44,963   INFO  
+cfg.MODEL.POST_PROCESSING.NMS_CONFIG = edict()
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: False
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.01
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2022-11-15 21:54:44,963   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2022-11-15 21:54:44,964   INFO  
+cfg.OPTIMIZATION = edict()
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 4
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 100
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.LR: 0.003
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2022-11-15 21:54:44,964   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2022-11-15 21:54:44,965   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2022-11-15 21:54:44,965   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2022-11-15 21:54:44,965   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2022-11-15 21:54:44,965   INFO  cfg.TAG: pointpillar_bev_free_iou_aware
+2022-11-15 21:54:44,965   INFO  cfg.EXP_GROUP_PATH: output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/each_layer_dynamic
+2022-11-15 21:54:44,967   INFO  Loading KITTI dataset
+2022-11-15 21:54:45,070   INFO  Total samples for KITTI dataset: 3769
+2022-11-15 21:54:48,780   INFO  ==> Loading parameters from checkpoint ../output/cfgs/kitti_models/pointpillar_bev_free_iou_aware/each_layer_dynamic/ckpt/checkpoint_epoch_100.pth to CPU
+2022-11-15 21:54:48,817   INFO  ==> Checkpoint trained from version: pcdet+0.5.2+9fa8c15
+2022-11-15 21:54:48,828   INFO  ==> Done (loaded 192/192)
+2022-11-15 21:54:55,419   INFO  ********************** Test SubArch **********************
+2022-11-15 21:54:55,750   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:55:18,347   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:55:18,347   INFO  Generate label finished(sec_per_example: 0.0057 second).
+2022-11-15 21:55:18,347   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:55:18,348   INFO  recall_rcnn_0.3: 0.660788
+2022-11-15 21:55:18,348   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:55:18,348   INFO  recall_rcnn_0.5: 0.293930
+2022-11-15 21:55:18,348   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:55:18,348   INFO  recall_rcnn_0.7: 0.027419
+2022-11-15 21:55:18,611   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:55:50,231   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:55:50,232   INFO  Generate label finished(sec_per_example: 0.0084 second).
+2022-11-15 21:55:50,232   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:55:50,232   INFO  recall_rcnn_0.3: 0.820524
+2022-11-15 21:55:50,232   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:55:50,232   INFO  recall_rcnn_0.5: 0.639570
+2022-11-15 21:55:50,232   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:55:50,232   INFO  recall_rcnn_0.7: 0.210308
+2022-11-15 21:55:50,474   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:56:10,158   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:56:10,158   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 21:56:10,159   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:56:10,159   INFO  recall_rcnn_0.3: 0.720974
+2022-11-15 21:56:10,159   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:56:10,159   INFO  recall_rcnn_0.5: 0.561636
+2022-11-15 21:56:10,159   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:56:10,159   INFO  recall_rcnn_0.7: 0.205871
+2022-11-15 21:56:10,401   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:56:38,278   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:56:38,278   INFO  Generate label finished(sec_per_example: 0.0074 second).
+2022-11-15 21:56:38,278   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:56:38,278   INFO  recall_rcnn_0.3: 0.140281
+2022-11-15 21:56:38,278   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:56:38,278   INFO  recall_rcnn_0.5: 0.025257
+2022-11-15 21:56:38,278   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:56:38,278   INFO  recall_rcnn_0.7: 0.001195
+2022-11-15 21:56:38,529   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:56:59,467   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:56:59,467   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 21:56:59,467   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:56:59,467   INFO  recall_rcnn_0.3: 0.948973
+2022-11-15 21:56:59,467   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:56:59,467   INFO  recall_rcnn_0.5: 0.882644
+2022-11-15 21:56:59,467   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:56:59,467   INFO  recall_rcnn_0.7: 0.599408
+2022-11-15 21:56:59,718   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:57:21,480   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:57:21,480   INFO  Generate label finished(sec_per_example: 0.0058 second).
+2022-11-15 21:57:21,480   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:57:21,480   INFO  recall_rcnn_0.3: 0.886512
+2022-11-15 21:57:21,480   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:57:21,480   INFO  recall_rcnn_0.5: 0.756926
+2022-11-15 21:57:21,480   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:57:21,480   INFO  recall_rcnn_0.7: 0.373798
+2022-11-15 21:57:21,731   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:57:43,412   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:57:43,412   INFO  Generate label finished(sec_per_example: 0.0058 second).
+2022-11-15 21:57:43,412   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:57:43,412   INFO  recall_rcnn_0.3: 0.497810
+2022-11-15 21:57:43,412   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:57:43,413   INFO  recall_rcnn_0.5: 0.140565
+2022-11-15 21:57:43,413   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:57:43,413   INFO  recall_rcnn_0.7: 0.011775
+2022-11-15 21:57:43,861   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:58:04,891   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:58:04,891   INFO  Generate label finished(sec_per_example: 0.0056 second).
+2022-11-15 21:58:04,891   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:58:04,891   INFO  recall_rcnn_0.3: 0.945560
+2022-11-15 21:58:04,891   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:58:04,891   INFO  recall_rcnn_0.5: 0.877638
+2022-11-15 21:58:04,891   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:58:04,891   INFO  recall_rcnn_0.7: 0.587917
+2022-11-15 21:58:05,140   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:58:26,799   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:58:26,799   INFO  Generate label finished(sec_per_example: 0.0057 second).
+2022-11-15 21:58:26,799   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:58:26,799   INFO  recall_rcnn_0.3: 0.664429
+2022-11-15 21:58:26,799   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:58:26,799   INFO  recall_rcnn_0.5: 0.381023
+2022-11-15 21:58:26,799   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:58:26,799   INFO  recall_rcnn_0.7: 0.073611
+2022-11-15 21:58:27,033   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:59:01,534   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:59:01,534   INFO  Generate label finished(sec_per_example: 0.0092 second).
+2022-11-15 21:59:01,534   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:59:01,534   INFO  recall_rcnn_0.3: 0.470163
+2022-11-15 21:59:01,534   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:59:01,534   INFO  recall_rcnn_0.5: 0.094943
+2022-11-15 21:59:01,534   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:59:01,534   INFO  recall_rcnn_0.7: 0.005290
+2022-11-15 21:59:01,778   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 21:59:44,505   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 21:59:44,505   INFO  Generate label finished(sec_per_example: 0.0113 second).
+2022-11-15 21:59:44,505   INFO  recall_roi_0.3: 0.000000
+2022-11-15 21:59:44,505   INFO  recall_rcnn_0.3: 0.081461
+2022-11-15 21:59:44,505   INFO  recall_roi_0.5: 0.000000
+2022-11-15 21:59:44,505   INFO  recall_rcnn_0.5: 0.010808
+2022-11-15 21:59:44,506   INFO  recall_roi_0.7: 0.000000
+2022-11-15 21:59:44,506   INFO  recall_rcnn_0.7: 0.000341
+2022-11-15 21:59:44,738   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:00:16,043   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:00:16,044   INFO  Generate label finished(sec_per_example: 0.0083 second).
+2022-11-15 22:00:16,044   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:00:16,044   INFO  recall_rcnn_0.3: 0.842426
+2022-11-15 22:00:16,044   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:00:16,044   INFO  recall_rcnn_0.5: 0.720860
+2022-11-15 22:00:16,044   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:00:16,044   INFO  recall_rcnn_0.7: 0.366915
+2022-11-15 22:00:16,291   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:00:36,706   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:00:36,707   INFO  Generate label finished(sec_per_example: 0.0054 second).
+2022-11-15 22:00:36,707   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:00:36,707   INFO  recall_rcnn_0.3: 0.776722
+2022-11-15 22:00:36,707   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:00:36,707   INFO  recall_rcnn_0.5: 0.534445
+2022-11-15 22:00:36,707   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:00:36,707   INFO  recall_rcnn_0.7: 0.128847
+2022-11-15 22:00:36,946   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:00:56,262   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:00:56,262   INFO  Generate label finished(sec_per_example: 0.0051 second).
+2022-11-15 22:00:56,262   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:00:56,262   INFO  recall_rcnn_0.3: 0.951021
+2022-11-15 22:00:56,262   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:00:56,262   INFO  recall_rcnn_0.5: 0.881791
+2022-11-15 22:00:56,262   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:00:56,262   INFO  recall_rcnn_0.7: 0.592355
+2022-11-15 22:00:56,620   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:01:16,228   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:01:16,228   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:01:16,229   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:01:16,229   INFO  recall_rcnn_0.3: 0.724501
+2022-11-15 22:01:16,229   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:01:16,229   INFO  recall_rcnn_0.5: 0.410717
+2022-11-15 22:01:16,229   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:01:16,229   INFO  recall_rcnn_0.7: 0.061380
+2022-11-15 22:01:16,471   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:01:37,249   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:01:37,249   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:01:37,249   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:01:37,249   INFO  recall_rcnn_0.3: 0.886342
+2022-11-15 22:01:37,249   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:01:37,249   INFO  recall_rcnn_0.5: 0.758234
+2022-11-15 22:01:37,249   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:01:37,249   INFO  recall_rcnn_0.7: 0.377268
+2022-11-15 22:01:37,521   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:01:57,420   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:01:57,421   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:01:57,421   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:01:57,421   INFO  recall_rcnn_0.3: 0.926788
+2022-11-15 22:01:57,421   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:01:57,421   INFO  recall_rcnn_0.5: 0.834803
+2022-11-15 22:01:57,421   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:01:57,421   INFO  recall_rcnn_0.7: 0.522328
+2022-11-15 22:01:57,655   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:02:18,233   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:02:18,233   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:02:18,233   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:02:18,234   INFO  recall_rcnn_0.3: 0.470163
+2022-11-15 22:02:18,234   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:02:18,234   INFO  recall_rcnn_0.5: 0.094943
+2022-11-15 22:02:18,234   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:02:18,234   INFO  recall_rcnn_0.7: 0.005290
+2022-11-15 22:02:18,474   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:02:38,945   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:02:38,945   INFO  Generate label finished(sec_per_example: 0.0054 second).
+2022-11-15 22:02:38,945   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:02:38,945   INFO  recall_rcnn_0.3: 0.711929
+2022-11-15 22:02:38,945   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:02:38,945   INFO  recall_rcnn_0.5: 0.453894
+2022-11-15 22:02:38,945   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:02:38,945   INFO  recall_rcnn_0.7: 0.114113
+2022-11-15 22:02:39,180   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:02:59,771   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:02:59,771   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:02:59,771   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:02:59,771   INFO  recall_rcnn_0.3: 0.094943
+2022-11-15 22:02:59,771   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:02:59,771   INFO  recall_rcnn_0.5: 0.013766
+2022-11-15 22:02:59,771   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:02:59,771   INFO  recall_rcnn_0.7: 0.000398
+2022-11-15 22:03:00,011   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:03:20,899   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:03:20,899   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:03:20,899   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:03:20,899   INFO  recall_rcnn_0.3: 0.922123
+2022-11-15 22:03:20,899   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:03:20,899   INFO  recall_rcnn_0.5: 0.818363
+2022-11-15 22:03:20,899   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:03:20,899   INFO  recall_rcnn_0.7: 0.488310
+2022-11-15 22:03:21,275   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:03:42,028   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:03:42,028   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:03:42,028   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:03:42,028   INFO  recall_rcnn_0.3: 0.664031
+2022-11-15 22:03:42,029   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:03:42,029   INFO  recall_rcnn_0.5: 0.296263
+2022-11-15 22:03:42,029   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:03:42,029   INFO  recall_rcnn_0.7: 0.025485
+2022-11-15 22:03:42,275   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:04:04,295   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:04:04,295   INFO  Generate label finished(sec_per_example: 0.0058 second).
+2022-11-15 22:04:04,295   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:04:04,295   INFO  recall_rcnn_0.3: 0.722737
+2022-11-15 22:04:04,295   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:04:04,295   INFO  recall_rcnn_0.5: 0.400990
+2022-11-15 22:04:04,295   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:04:04,295   INFO  recall_rcnn_0.7: 0.061323
+2022-11-15 22:04:04,765   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:04:33,830   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:04:33,831   INFO  Generate label finished(sec_per_example: 0.0077 second).
+2022-11-15 22:04:33,831   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:04:33,831   INFO  recall_rcnn_0.3: 0.771944
+2022-11-15 22:04:33,831   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:04:33,831   INFO  recall_rcnn_0.5: 0.562489
+2022-11-15 22:04:33,831   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:04:33,831   INFO  recall_rcnn_0.7: 0.140964
+2022-11-15 22:04:34,138   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:05:04,831   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:05:04,831   INFO  Generate label finished(sec_per_example: 0.0081 second).
+2022-11-15 22:05:04,831   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:05:04,831   INFO  recall_rcnn_0.3: 0.669492
+2022-11-15 22:05:04,831   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:05:04,831   INFO  recall_rcnn_0.5: 0.322658
+2022-11-15 22:05:04,832   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:05:04,832   INFO  recall_rcnn_0.7: 0.042039
+2022-11-15 22:05:05,185   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:05:38,393   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:05:38,393   INFO  Generate label finished(sec_per_example: 0.0088 second).
+2022-11-15 22:05:38,393   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:05:38,393   INFO  recall_rcnn_0.3: 0.915467
+2022-11-15 22:05:38,393   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:05:38,393   INFO  recall_rcnn_0.5: 0.807611
+2022-11-15 22:05:38,393   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:05:38,393   INFO  recall_rcnn_0.7: 0.475169
+2022-11-15 22:05:38,659   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:05:59,671   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:05:59,672   INFO  Generate label finished(sec_per_example: 0.0056 second).
+2022-11-15 22:05:59,672   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:05:59,672   INFO  recall_rcnn_0.3: 0.542579
+2022-11-15 22:05:59,672   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:05:59,672   INFO  recall_rcnn_0.5: 0.216451
+2022-11-15 22:05:59,672   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:05:59,672   INFO  recall_rcnn_0.7: 0.023721
+2022-11-15 22:05:59,921   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:06:19,729   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:06:19,729   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:06:19,729   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:06:19,729   INFO  recall_rcnn_0.3: 0.953695
+2022-11-15 22:06:19,729   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:06:19,729   INFO  recall_rcnn_0.5: 0.893396
+2022-11-15 22:06:19,729   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:06:19,729   INFO  recall_rcnn_0.7: 0.626827
+2022-11-15 22:06:20,095   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:06:39,151   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:06:39,151   INFO  Generate label finished(sec_per_example: 0.0051 second).
+2022-11-15 22:06:39,151   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:06:39,151   INFO  recall_rcnn_0.3: 0.831617
+2022-11-15 22:06:39,151   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:06:39,151   INFO  recall_rcnn_0.5: 0.632232
+2022-11-15 22:06:39,151   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:06:39,151   INFO  recall_rcnn_0.7: 0.200125
+2022-11-15 22:06:39,391   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:06:59,054   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:06:59,054   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:06:59,054   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:06:59,054   INFO  recall_rcnn_0.3: 0.760510
+2022-11-15 22:06:59,054   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:06:59,054   INFO  recall_rcnn_0.5: 0.581205
+2022-11-15 22:06:59,054   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:06:59,054   INFO  recall_rcnn_0.7: 0.224472
+2022-11-15 22:06:59,293   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:07:26,718   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:07:26,718   INFO  Generate label finished(sec_per_example: 0.0073 second).
+2022-11-15 22:07:26,718   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:07:26,718   INFO  recall_rcnn_0.3: 0.524148
+2022-11-15 22:07:26,718   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:07:26,718   INFO  recall_rcnn_0.5: 0.144320
+2022-11-15 22:07:26,718   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:07:26,718   INFO  recall_rcnn_0.7: 0.009045
+2022-11-15 22:07:27,077   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:07:58,699   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:07:58,699   INFO  Generate label finished(sec_per_example: 0.0084 second).
+2022-11-15 22:07:58,700   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:07:58,700   INFO  recall_rcnn_0.3: 0.930030
+2022-11-15 22:07:58,700   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:07:58,700   INFO  recall_rcnn_0.5: 0.842426
+2022-11-15 22:07:58,700   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:07:58,700   INFO  recall_rcnn_0.7: 0.530349
+2022-11-15 22:07:59,195   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:08:30,415   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:08:30,415   INFO  Generate label finished(sec_per_example: 0.0083 second).
+2022-11-15 22:08:30,415   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:08:30,415   INFO  recall_rcnn_0.3: 0.711929
+2022-11-15 22:08:30,415   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:08:30,415   INFO  recall_rcnn_0.5: 0.453894
+2022-11-15 22:08:30,415   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:08:30,416   INFO  recall_rcnn_0.7: 0.114113
+2022-11-15 22:08:31,035   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:09:00,217   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:09:00,218   INFO  Generate label finished(sec_per_example: 0.0077 second).
+2022-11-15 22:09:00,218   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:09:00,218   INFO  recall_rcnn_0.3: 0.842426
+2022-11-15 22:09:00,218   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:09:00,218   INFO  recall_rcnn_0.5: 0.720860
+2022-11-15 22:09:00,218   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:09:00,218   INFO  recall_rcnn_0.7: 0.366915
+2022-11-15 22:09:00,468   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:09:20,053   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:09:20,054   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:09:20,054   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:09:20,054   INFO  recall_rcnn_0.3: 0.487912
+2022-11-15 22:09:20,054   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:09:20,054   INFO  recall_rcnn_0.5: 0.130952
+2022-11-15 22:09:20,054   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:09:20,054   INFO  recall_rcnn_0.7: 0.009955
+2022-11-15 22:09:20,431   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:09:40,551   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:09:40,551   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:09:40,551   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:09:40,552   INFO  recall_rcnn_0.3: 0.948973
+2022-11-15 22:09:40,552   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:09:40,552   INFO  recall_rcnn_0.5: 0.882644
+2022-11-15 22:09:40,552   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:09:40,552   INFO  recall_rcnn_0.7: 0.599408
+2022-11-15 22:09:40,806   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:10:02,730   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:10:02,730   INFO  Generate label finished(sec_per_example: 0.0058 second).
+2022-11-15 22:10:02,730   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:10:02,730   INFO  recall_rcnn_0.3: 0.886512
+2022-11-15 22:10:02,730   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:10:02,730   INFO  recall_rcnn_0.5: 0.756926
+2022-11-15 22:10:02,730   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:10:02,730   INFO  recall_rcnn_0.7: 0.373798
+2022-11-15 22:10:03,033   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:10:31,571   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:10:31,571   INFO  Generate label finished(sec_per_example: 0.0076 second).
+2022-11-15 22:10:31,571   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:10:31,571   INFO  recall_rcnn_0.3: 0.088117
+2022-11-15 22:10:31,571   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:10:31,571   INFO  recall_rcnn_0.5: 0.011775
+2022-11-15 22:10:31,571   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:10:31,571   INFO  recall_rcnn_0.7: 0.000626
+2022-11-15 22:10:31,925   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:11:00,416   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:11:00,417   INFO  Generate label finished(sec_per_example: 0.0076 second).
+2022-11-15 22:11:00,417   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:11:00,417   INFO  recall_rcnn_0.3: 0.825360
+2022-11-15 22:11:00,417   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:11:00,417   INFO  recall_rcnn_0.5: 0.625519
+2022-11-15 22:11:00,417   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:11:00,417   INFO  recall_rcnn_0.7: 0.194380
+2022-11-15 22:11:00,974   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:11:28,063   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:11:28,064   INFO  Generate label finished(sec_per_example: 0.0072 second).
+2022-11-15 22:11:28,064   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:11:28,064   INFO  recall_rcnn_0.3: 0.532567
+2022-11-15 22:11:28,064   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:11:28,064   INFO  recall_rcnn_0.5: 0.202913
+2022-11-15 22:11:28,064   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:11:28,064   INFO  recall_rcnn_0.7: 0.023096
+2022-11-15 22:11:28,621   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:11:51,678   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:11:51,678   INFO  Generate label finished(sec_per_example: 0.0061 second).
+2022-11-15 22:11:51,678   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:11:51,678   INFO  recall_rcnn_0.3: 0.107458
+2022-11-15 22:11:51,678   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:11:51,678   INFO  recall_rcnn_0.5: 0.013766
+2022-11-15 22:11:51,678   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:11:51,678   INFO  recall_rcnn_0.7: 0.000740
+2022-11-15 22:11:51,959   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:12:11,646   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:12:11,647   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:12:11,647   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:12:11,647   INFO  recall_rcnn_0.3: 0.100347
+2022-11-15 22:12:11,647   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:12:11,647   INFO  recall_rcnn_0.5: 0.016725
+2022-11-15 22:12:11,647   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:12:11,647   INFO  recall_rcnn_0.7: 0.001024
+2022-11-15 22:12:12,081   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:12:31,856   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:12:31,857   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:12:31,857   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:12:31,857   INFO  recall_rcnn_0.3: 0.941635
+2022-11-15 22:12:31,857   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:12:31,857   INFO  recall_rcnn_0.5: 0.863587
+2022-11-15 22:12:31,857   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:12:31,857   INFO  recall_rcnn_0.7: 0.578702
+2022-11-15 22:12:32,136   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:12:51,707   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:12:51,708   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:12:51,708   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:12:51,708   INFO  recall_rcnn_0.3: 0.828489
+2022-11-15 22:12:51,708   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:12:51,708   INFO  recall_rcnn_0.5: 0.702258
+2022-11-15 22:12:51,708   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:12:51,708   INFO  recall_rcnn_0.7: 0.345014
+2022-11-15 22:12:51,948   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:13:11,902   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:13:11,902   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:13:11,902   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:13:11,902   INFO  recall_rcnn_0.3: 0.561579
+2022-11-15 22:13:11,902   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:13:11,902   INFO  recall_rcnn_0.5: 0.200694
+2022-11-15 22:13:11,902   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:13:11,902   INFO  recall_rcnn_0.7: 0.014392
+2022-11-15 22:13:12,154   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:13:31,865   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:13:31,865   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:13:31,865   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:13:31,865   INFO  recall_rcnn_0.3: 0.094943
+2022-11-15 22:13:31,865   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:13:31,865   INFO  recall_rcnn_0.5: 0.013766
+2022-11-15 22:13:31,865   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:13:31,865   INFO  recall_rcnn_0.7: 0.000398
+2022-11-15 22:13:32,143   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:13:52,079   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:13:52,079   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:13:52,079   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:13:52,079   INFO  recall_rcnn_0.3: 0.933785
+2022-11-15 22:13:52,079   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:13:52,079   INFO  recall_rcnn_0.5: 0.844985
+2022-11-15 22:13:52,079   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:13:52,079   INFO  recall_rcnn_0.7: 0.540076
+2022-11-15 22:13:52,331   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:14:13,026   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:14:13,026   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:14:13,026   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:14:13,026   INFO  recall_rcnn_0.3: 0.746743
+2022-11-15 22:14:13,026   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:14:13,026   INFO  recall_rcnn_0.5: 0.417430
+2022-11-15 22:14:13,026   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:14:13,026   INFO  recall_rcnn_0.7: 0.055862
+2022-11-15 22:14:13,264   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:14:33,859   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:14:33,860   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:14:33,860   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:14:33,860   INFO  recall_rcnn_0.3: 0.372717
+2022-11-15 22:14:33,860   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:14:33,860   INFO  recall_rcnn_0.5: 0.166904
+2022-11-15 22:14:33,860   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:14:33,860   INFO  recall_rcnn_0.7: 0.019569
+2022-11-15 22:14:34,234   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:14:55,751   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:14:55,751   INFO  Generate label finished(sec_per_example: 0.0057 second).
+2022-11-15 22:14:55,751   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:14:55,751   INFO  recall_rcnn_0.3: 0.828489
+2022-11-15 22:14:55,751   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:14:55,751   INFO  recall_rcnn_0.5: 0.702258
+2022-11-15 22:14:55,751   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:14:55,751   INFO  recall_rcnn_0.7: 0.345014
+2022-11-15 22:14:56,026   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:15:23,606   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:15:23,606   INFO  Generate label finished(sec_per_example: 0.0073 second).
+2022-11-15 22:15:23,606   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:15:23,606   INFO  recall_rcnn_0.3: 0.925081
+2022-11-15 22:15:23,606   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:15:23,606   INFO  recall_rcnn_0.5: 0.829228
+2022-11-15 22:15:23,606   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:15:23,606   INFO  recall_rcnn_0.7: 0.492235
+2022-11-15 22:15:23,856   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:15:51,912   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:15:51,912   INFO  Generate label finished(sec_per_example: 0.0074 second).
+2022-11-15 22:15:51,913   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:15:51,913   INFO  recall_rcnn_0.3: 0.295864
+2022-11-15 22:15:51,913   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:15:51,913   INFO  recall_rcnn_0.5: 0.081290
+2022-11-15 22:15:51,913   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:15:51,913   INFO  recall_rcnn_0.7: 0.004835
+2022-11-15 22:15:52,204   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:16:21,113   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:16:21,114   INFO  Generate label finished(sec_per_example: 0.0077 second).
+2022-11-15 22:16:21,114   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:16:21,114   INFO  recall_rcnn_0.3: 0.503897
+2022-11-15 22:16:21,114   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:16:21,114   INFO  recall_rcnn_0.5: 0.212583
+2022-11-15 22:16:21,114   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:16:21,114   INFO  recall_rcnn_0.7: 0.018659
+2022-11-15 22:16:21,353   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:16:42,664   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:16:42,664   INFO  Generate label finished(sec_per_example: 0.0056 second).
+2022-11-15 22:16:42,664   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:16:42,664   INFO  recall_rcnn_0.3: 0.507253
+2022-11-15 22:16:42,664   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:16:42,664   INFO  recall_rcnn_0.5: 0.136015
+2022-11-15 22:16:42,664   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:16:42,664   INFO  recall_rcnn_0.7: 0.006656
+2022-11-15 22:16:42,942   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:17:03,224   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:17:03,224   INFO  Generate label finished(sec_per_example: 0.0054 second).
+2022-11-15 22:17:03,224   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:17:03,224   INFO  recall_rcnn_0.3: 0.732180
+2022-11-15 22:17:03,224   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:17:03,224   INFO  recall_rcnn_0.5: 0.394050
+2022-11-15 22:17:03,224   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:17:03,224   INFO  recall_rcnn_0.7: 0.052221
+2022-11-15 22:17:03,486   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:17:24,293   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:17:24,293   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:17:24,294   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:17:24,294   INFO  recall_rcnn_0.3: 0.849878
+2022-11-15 22:17:24,294   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:17:24,294   INFO  recall_rcnn_0.5: 0.686103
+2022-11-15 22:17:24,294   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:17:24,294   INFO  recall_rcnn_0.7: 0.268218
+2022-11-15 22:17:24,724   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:17:46,348   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:17:46,349   INFO  Generate label finished(sec_per_example: 0.0057 second).
+2022-11-15 22:17:46,349   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:17:46,349   INFO  recall_rcnn_0.3: 0.461573
+2022-11-15 22:17:46,349   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:17:46,349   INFO  recall_rcnn_0.5: 0.120314
+2022-11-15 22:17:46,349   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:17:46,349   INFO  recall_rcnn_0.7: 0.009557
+2022-11-15 22:17:46,591   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:18:08,671   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:18:08,672   INFO  Generate label finished(sec_per_example: 0.0059 second).
+2022-11-15 22:18:08,672   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:18:08,672   INFO  recall_rcnn_0.3: 0.075658
+2022-11-15 22:18:08,672   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:18:08,672   INFO  recall_rcnn_0.5: 0.009386
+2022-11-15 22:18:08,672   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:18:08,672   INFO  recall_rcnn_0.7: 0.000455
+2022-11-15 22:18:08,920   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:18:31,110   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:18:31,111   INFO  Generate label finished(sec_per_example: 0.0059 second).
+2022-11-15 22:18:31,111   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:18:31,111   INFO  recall_rcnn_0.3: 0.107458
+2022-11-15 22:18:31,111   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:18:31,111   INFO  recall_rcnn_0.5: 0.013766
+2022-11-15 22:18:31,111   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:18:31,111   INFO  recall_rcnn_0.7: 0.000740
+2022-11-15 22:18:31,352   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:18:57,622   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:18:57,622   INFO  Generate label finished(sec_per_example: 0.0070 second).
+2022-11-15 22:18:57,622   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:18:57,622   INFO  recall_rcnn_0.3: 0.094943
+2022-11-15 22:18:57,622   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:18:57,622   INFO  recall_rcnn_0.5: 0.013766
+2022-11-15 22:18:57,622   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:18:57,622   INFO  recall_rcnn_0.7: 0.000398
+2022-11-15 22:18:57,930   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:19:27,157   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:19:27,157   INFO  Generate label finished(sec_per_example: 0.0078 second).
+2022-11-15 22:19:27,157   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:19:27,157   INFO  recall_rcnn_0.3: 0.461573
+2022-11-15 22:19:27,157   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:19:27,157   INFO  recall_rcnn_0.5: 0.091814
+2022-11-15 22:19:27,157   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:19:27,157   INFO  recall_rcnn_0.7: 0.004608
+2022-11-15 22:19:27,542   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:19:56,749   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:19:56,750   INFO  Generate label finished(sec_per_example: 0.0077 second).
+2022-11-15 22:19:56,750   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:19:56,750   INFO  recall_rcnn_0.3: 0.753058
+2022-11-15 22:19:56,750   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:19:56,750   INFO  recall_rcnn_0.5: 0.501052
+2022-11-15 22:19:56,750   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:19:56,750   INFO  recall_rcnn_0.7: 0.105069
+2022-11-15 22:19:57,089   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:20:18,459   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:20:18,460   INFO  Generate label finished(sec_per_example: 0.0057 second).
+2022-11-15 22:20:18,460   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:20:18,460   INFO  recall_rcnn_0.3: 0.523921
+2022-11-15 22:20:18,460   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:20:18,460   INFO  recall_rcnn_0.5: 0.278685
+2022-11-15 22:20:18,460   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:20:18,460   INFO  recall_rcnn_0.7: 0.041982
+2022-11-15 22:20:18,831   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:20:38,747   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:20:38,747   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:20:38,747   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:20:38,747   INFO  recall_rcnn_0.3: 0.046931
+2022-11-15 22:20:38,747   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:20:38,747   INFO  recall_rcnn_0.5: 0.004380
+2022-11-15 22:20:38,748   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:20:38,748   INFO  recall_rcnn_0.7: 0.000341
+2022-11-15 22:20:38,993   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:20:59,580   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:20:59,580   INFO  Generate label finished(sec_per_example: 0.0055 second).
+2022-11-15 22:20:59,580   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:20:59,580   INFO  recall_rcnn_0.3: 0.909039
+2022-11-15 22:20:59,580   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:20:59,580   INFO  recall_rcnn_0.5: 0.798054
+2022-11-15 22:20:59,580   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:20:59,580   INFO  recall_rcnn_0.7: 0.432732
+2022-11-15 22:20:59,821   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:21:19,571   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:21:19,571   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:21:19,571   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:21:19,571   INFO  recall_rcnn_0.3: 0.602765
+2022-11-15 22:21:19,571   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:21:19,571   INFO  recall_rcnn_0.5: 0.271574
+2022-11-15 22:21:19,571   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:21:19,571   INFO  recall_rcnn_0.7: 0.032653
+2022-11-15 22:21:19,810   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:21:39,509   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:21:39,509   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:21:39,509   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:21:39,509   INFO  recall_rcnn_0.3: 0.744013
+2022-11-15 22:21:39,509   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:21:39,509   INFO  recall_rcnn_0.5: 0.563172
+2022-11-15 22:21:39,509   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:21:39,509   INFO  recall_rcnn_0.7: 0.218101
+2022-11-15 22:21:39,747   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:21:59,530   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:21:59,530   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:21:59,530   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:21:59,530   INFO  recall_rcnn_0.3: 0.687809
+2022-11-15 22:21:59,530   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:21:59,530   INFO  recall_rcnn_0.5: 0.361568
+2022-11-15 22:21:59,530   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:21:59,531   INFO  recall_rcnn_0.7: 0.045736
+2022-11-15 22:21:59,773   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:22:19,412   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:22:19,413   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:22:19,413   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:22:19,413   INFO  recall_rcnn_0.3: 0.879686
+2022-11-15 22:22:19,413   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:22:19,413   INFO  recall_rcnn_0.5: 0.735082
+2022-11-15 22:22:19,413   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:22:19,413   INFO  recall_rcnn_0.7: 0.358951
+2022-11-15 22:22:19,651   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:22:39,093   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:22:39,094   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:22:39,094   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:22:39,094   INFO  recall_rcnn_0.3: 0.664031
+2022-11-15 22:22:39,094   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:22:39,094   INFO  recall_rcnn_0.5: 0.296263
+2022-11-15 22:22:39,094   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:22:39,094   INFO  recall_rcnn_0.7: 0.025485
+2022-11-15 22:22:39,455   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:22:58,861   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:22:58,861   INFO  Generate label finished(sec_per_example: 0.0051 second).
+2022-11-15 22:22:58,861   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:22:58,861   INFO  recall_rcnn_0.3: 0.850902
+2022-11-15 22:22:58,861   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:22:58,861   INFO  recall_rcnn_0.5: 0.702713
+2022-11-15 22:22:58,861   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:22:58,861   INFO  recall_rcnn_0.7: 0.321008
+2022-11-15 22:22:59,090   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:23:18,441   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:23:18,441   INFO  Generate label finished(sec_per_example: 0.0051 second).
+2022-11-15 22:23:18,441   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:23:18,442   INFO  recall_rcnn_0.3: 0.664429
+2022-11-15 22:23:18,442   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:23:18,442   INFO  recall_rcnn_0.5: 0.381023
+2022-11-15 22:23:18,442   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:23:18,442   INFO  recall_rcnn_0.7: 0.073611
+2022-11-15 22:23:18,673   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:23:38,323   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:23:38,323   INFO  Generate label finished(sec_per_example: 0.0052 second).
+2022-11-15 22:23:38,323   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:23:38,323   INFO  recall_rcnn_0.3: 0.542579
+2022-11-15 22:23:38,323   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:23:38,323   INFO  recall_rcnn_0.5: 0.216451
+2022-11-15 22:23:38,323   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:23:38,323   INFO  recall_rcnn_0.7: 0.023721
+2022-11-15 22:23:38,559   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:23:57,932   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:23:57,932   INFO  Generate label finished(sec_per_example: 0.0051 second).
+2022-11-15 22:23:57,932   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:23:57,932   INFO  recall_rcnn_0.3: 0.920189
+2022-11-15 22:23:57,933   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:23:57,933   INFO  recall_rcnn_0.5: 0.810513
+2022-11-15 22:23:57,933   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:23:57,933   INFO  recall_rcnn_0.7: 0.460436
+2022-11-15 22:23:58,181   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:24:25,889   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:24:25,889   INFO  Generate label finished(sec_per_example: 0.0074 second).
+2022-11-15 22:24:25,889   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:24:25,890   INFO  recall_rcnn_0.3: 0.745662
+2022-11-15 22:24:25,890   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:24:25,890   INFO  recall_rcnn_0.5: 0.508903
+2022-11-15 22:24:25,890   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:24:25,890   INFO  recall_rcnn_0.7: 0.150065
+2022-11-15 22:24:26,125   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:24:54,816   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:24:54,816   INFO  Generate label finished(sec_per_example: 0.0076 second).
+2022-11-15 22:24:54,816   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:24:54,816   INFO  recall_rcnn_0.3: 0.711929
+2022-11-15 22:24:54,816   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:24:54,816   INFO  recall_rcnn_0.5: 0.453894
+2022-11-15 22:24:54,816   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:24:54,816   INFO  recall_rcnn_0.7: 0.114113
+2022-11-15 22:24:55,102   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:25:21,480   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:25:21,481   INFO  Generate label finished(sec_per_example: 0.0070 second).
+2022-11-15 22:25:21,481   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:25:21,481   INFO  recall_rcnn_0.3: 0.075658
+2022-11-15 22:25:21,481   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:25:21,481   INFO  recall_rcnn_0.5: 0.009386
+2022-11-15 22:25:21,481   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:25:21,481   INFO  recall_rcnn_0.7: 0.000455
+2022-11-15 22:25:21,839   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:25:49,429   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:25:49,429   INFO  Generate label finished(sec_per_example: 0.0073 second).
+2022-11-15 22:25:49,429   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:25:49,429   INFO  recall_rcnn_0.3: 0.542579
+2022-11-15 22:25:49,429   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:25:49,429   INFO  recall_rcnn_0.5: 0.216451
+2022-11-15 22:25:49,429   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:25:49,429   INFO  recall_rcnn_0.7: 0.023721
+2022-11-15 22:25:49,662   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:26:09,813   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:26:09,814   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:26:09,814   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:26:09,814   INFO  recall_rcnn_0.3: 0.798339
+2022-11-15 22:26:09,814   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:26:09,814   INFO  recall_rcnn_0.5: 0.655612
+2022-11-15 22:26:09,814   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:26:09,814   INFO  recall_rcnn_0.7: 0.281814
+2022-11-15 22:26:10,071   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:26:29,999   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:26:29,999   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:26:29,999   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:26:29,999   INFO  recall_rcnn_0.3: 0.920758
+2022-11-15 22:26:29,999   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:26:29,999   INFO  recall_rcnn_0.5: 0.818477
+2022-11-15 22:26:29,999   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:26:29,999   INFO  recall_rcnn_0.7: 0.500597
+2022-11-15 22:26:30,244   INFO  *************** EPOCH 100 EVALUATION *****************
+2022-11-15 22:26:50,445   INFO  *************** Performance of EPOCH 100 *****************
+2022-11-15 22:26:50,445   INFO  Generate label finished(sec_per_example: 0.0053 second).
+2022-11-15 22:26:50,445   INFO  recall_roi_0.3: 0.000000
+2022-11-15 22:26:50,445   INFO  recall_rcnn_0.3: 0.944934
+2022-11-15 22:26:50,445   INFO  recall_roi_0.5: 0.000000
+2022-11-15 22:26:50,445   INFO  recall_rcnn_0.5: 0.873258
+2022-11-15 22:26:50,445   INFO  recall_roi_0.7: 0.000000
+2022-11-15 22:26:50,445   INFO  recall_rcnn_0.7: 0.571307
+2022-11-15 22:26:50,700   INFO  *************** EPOCH 100 EVALUATION *****************
