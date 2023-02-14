@@ -115,8 +115,6 @@ def upconv(in_channels, out_channels):
     # return PixelShuffle(in_channels, out_channels, nn.BatchNorm2d)
     return PixelShuffle_v3(in_channels, out_channels, nn.BatchNorm2d)
 
-
-
 class Standalone_MVLidarNet(nn.Module):
     def __init__(self, model_cfg, input_channels):
         super().__init__()
@@ -131,48 +129,6 @@ class Standalone_MVLidarNet(nn.Module):
         block_out_channel = [None] * 5
         prev_channels = input_channels
 
-        '''for idx in range(num_levels - 1): # idx表示第几个block/upconv，此处减去上采样的conv channel
-            cur_channels = (num_filters[idx] * ratio[idx]).apply(divisor_fn)
-            block_out_channel[idx] = cur_channels
-            
-            cur_layer = []
-            for k in range(2):# 5个blocks，每个两层，且每个block内部out channel相同
-                cur_layer.extend([conv3x3(
-                    prev_channels, 
-                    cur_channels, 
-                    stride=1 if k==0 or idx == 0 else 2)])
-                prev_channels = cur_channels
-            self.blocks.append(nn.Sequential(*cur_layer))
-
-        # ------------------- 上采样 ----------------------
-        up_channels = [None] * 4
-        up_channels[0] = block_out_channel[-2]
-        # 原本up1c是conv(256, 128)
-        up_channels[1] = (ratio[-1] * num_filters[-1]).apply(divisor_fn)
-        up_channels[2] = block_out_channel[-3]
-        # 原本up2c是conv(128, 64)
-        up_channels[3] = 64
-
-        for i, cur_channels in enumerate(up_channels):
-            if i % 2 == 0:
-                self.deblocks.append(nn.Sequential(
-                    nn.ConvTranspose2d(
-                        prev_channels, 
-                        cur_channels,
-                        kernel_size = 2,
-                        stride=2, bias=False,
-                    ),
-                    nn.BatchNorm2d(cur_channels),
-                    nn.ReLU()
-                ))
-            else:
-                self.deblocks.append(conv3x3(
-                        prev_channels * 2, 
-                        cur_channels, 
-                        stride=1))
-            prev_channels = cur_channels
-'''
-        
         assert len(num_filters) == len(ratio)
         channel_size = [make_divisible(num_filters[i] * ratio[i], 8) for i in range(len(num_filters))]
         self.height = nn.Sequential(conv3x3(multi_input_channels[0], channel_size[0]),
@@ -209,14 +165,6 @@ class Standalone_MVLidarNet(nn.Module):
         Returns:
         """
         height_feat = data_dict['spatial_features']
-        # print(height_feat.shape)
-        
-        # import skimage
-        # jpg = height_feat.detach().cpu().squeeze().numpy()
-        # print('-----------------------', jpg.min(), jpg.max())
-        # jpg = ((jpg - jpg.min()) / (jpg.max() - jpg.min()) * 255 ).astype(np.ubyte)
-        # jpg = jpg.transpose(1,2,0)
-        # skimage.io.imsave('./bev.jpg', jpg)
 
         height_feat = self.height(height_feat)
         
@@ -267,7 +215,7 @@ class Standalone_Pointpillar(nn.Module):
             ratio = self.model_cfg.ratio
         i = 0
         c_in_list = [input_channels, int(num_filters[0] * ratio[3]), int(num_filters[1] * ratio[9])]
-        new_num_upsample_filters = c_in_list[1:] + [int(num_filters[2] * ratio[-1])]
+        new_num_upsample_filters = c_in_list[1:] + [int(num_filters[2] * ratio[-4])]
         self.blocks = nn.ModuleList()
         self.deblocks = nn.ModuleList()
         for idx in range(num_levels):

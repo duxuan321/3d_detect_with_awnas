@@ -119,7 +119,11 @@ class BEV_mvlidarnet(nn.Module):
 
     def forward(self, batch_dict, **kwargs):
         # 该模块原本用于mvlidarnet，而该模型的head的宽高和正常是反过来的，现在移植到正常的模型，需要permute
-        bev_fea = batch_dict['bev_map'].permute(0,1,3,2)   
+        export_onnx = self.model_cfg.get("EXPORT_ONNX",False)
+        if export_onnx:
+            bev_fea = batch_dict['bev_map']
+        else:
+            bev_fea = batch_dict['bev_map'].permute(0,1,3,2)   
 
         batch_dict['spatial_features'] = bev_fea
         # print("??",batch_dict['spatial_features'].shape)

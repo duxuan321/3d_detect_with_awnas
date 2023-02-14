@@ -64,39 +64,88 @@ MODEL:
         NUM_FILTERS: [64, 128, 256]
         UPSAMPLE_STRIDES: [1, 2, 4]
         NUM_UPSAMPLE_FILTERS: [128, 128, 128]
-        # NAME: BaseBEVBackbone
-        NAME: BEVBackboneSuperNet
-        SEARCH_CFG:
-          search_space_cfg: {}
-          supernet_cfg:
-            # depth_choices_ratio: [1, 0.8, 0.64]
-            force_use_ordinal_channel_handler: True
-            fix_block_channel: True
-            mult_ratio_choices: [0.125, 0.25, 0.35, 0.5, 0.75, 1] #[0.125, 0.25, 0.5, 1]
-            kernel_sizes: [3]
-            schedule_cfg:
-              kernel_sizes:
-                  - epoch: 0
-                    choices: [3]
-              mult_ratio_choices:
-                  - epoch: 0
-                    choices: [1]
-                  # - epoch: 51
-                  #   choices: [0.5, 1]
-                  # - epoch: 71
-                  #   choices: [0.25, 0.5, 1]
-                  # - epoch: 91
-                  #   choices: [0.125, 0.25, 0.5, 1]
-                  - epoch: 51
-                    choices: [0.75, 1]
-                  - epoch: 61
-                    choices: [0.5, 0.75, 1]
-                  - epoch: 71
-                    choices: [0.35, 0.5, 0.75, 1]
-                  - epoch: 81
-                    choices: [0.25, 0.35, 0.5, 0.75, 1]
-                  - epoch: 91
-                    choices: [0.125, 0.25, 0.35, 0.5, 0.75, 1]
+        ratio: [1.0, 0.5, 1.0, 1.0, 0.25, 0.125, 0.25, 0.5, 1.0, 0.5, 0.25, 1.0, 0.125, 0.125, 1.0, 0.125, 1, 1, 1]
+        NAME: Standalone_Pointpillar #BaseBEVBackbone
+        # NAME: BEVBackboneSuperNet
+        # SEARCH_CFG:
+        #   search_space_cfg: {}
+        #   supernet_cfg:
+        #     # depth_choices_ratio: [1, 0.8, 0.64]
+        #     force_use_ordinal_channel_handler: False #!True
+        #     fix_block_channel: False
+        #     mult_ratio_choices: [0.125, 0.25, 0.5, 1] #[0.125, 0.25, 0.35, 0.5, 0.75, 1]
+        #     kernel_sizes: []
+        #     schedule_cfg:
+        #       kernel_sizes:
+        #           - epoch: 0
+        #             choices: []
+        #       mult_ratio_choices:
+        #           - epoch: 0
+        #             choices: [1]
+        #           - epoch: 51
+        #             choices: [0.5, 1]
+        #           - epoch: 71
+        #             choices: [0.25, 0.5, 1]
+        #           - epoch: 91
+        #             choices: [0.125, 0.25, 0.5, 1]
+        #           # - epoch: 51
+        #           #   choices: [0.75, 1]
+        #           # - epoch: 61
+        #           #   choices: [0.5, 0.75, 1]
+        #           # - epoch: 71
+        #           #   choices: [0.35, 0.5, 0.75, 1]
+        #           # - epoch: 81
+        #           #   choices: [0.25, 0.35, 0.5, 0.75, 1]
+        #           # - epoch: 91
+        #           #   choices: [0.125, 0.25, 0.35, 0.5, 0.75, 1]
+        #     controller_type: predictor-based
+        #     controller_cfg:
+        #       # Schedulable attributes: 
+        #       mode: eval
+        #       inner_controller_type: evo #random_sample
+        #       inner_controller_cfg: #
+        #         population_size: 30
+        #         parent_pool_size: 5
+        #         elimination_strategy: perf
+        #         eval_sample_strategy: all
+        #       arch_network_type: pointwise_comparator
+        #       arch_network_cfg:
+        #         arch_embedder_cfg: {}
+        #           # op_embedding_dim: 48
+        #           # node_embedding_dim: 48
+        #           # hid_dim: 48
+        #           # gcn_out_dims: [32, 32, 32, 32]
+        #           # share_op_attention: false
+        #           # use_bn: false
+        #           # use_final_only: false
+        #           # share_self_op_emb: false
+        #           # dropout: 0.
+        #         arch_embedder_type: naive_embedder
+        #         compare_loss_type: margin_linear
+        #         compare_margin: 0.1
+        #         mlp_dropout: 0.1
+        #         mlp_hiddens: [256, 256, 256]
+        #         optimizer: {lr: 0.001, type: Adam}
+        #         scheduler: null
+        #       inner_sample_n: 1
+        #       inner_samples: 1
+        #       inner_steps: 50
+        #       inner_report_freq: 10
+        #       predict_batch_size: 50
+        #       inner_random_init: true # try false with perf
+        #       inner_iter_random_init: false
+        #       begin_train_num: 0 #!200
+        #       predictor_train_cfg:
+        #         batch_size: 50
+        #         compare: false #!true
+        #         compare_threshold: 0.0
+        #         epochs: 100
+        #         max_compare_ratio: 4.0
+        #         n_cross_valid: null
+        #         num_workers: 2
+        #         report_freq: 50
+        #         #! train_valid_split: 0.9
+        #       schedule_cfg: null
                 
 
     DENSE_HEAD:
@@ -175,7 +224,7 @@ MODEL:
 
 OPTIMIZATION:
     BATCH_SIZE_PER_GPU: 4
-    NUM_EPOCHS: 100
+    NUM_EPOCHS: 80
 
     OPTIMIZER: adam_onecycle
     LR: 0.003

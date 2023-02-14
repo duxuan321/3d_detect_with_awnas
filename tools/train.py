@@ -71,52 +71,6 @@ def parse_config():
 
     return args, cfg
 
-# def collect_stats(model, data_loader, num_batches):
-#     """Feed data to the network and collect statistic"""
-
-#     widgets = ['Calibration: ', Percentage(), ' ', Bar('#'),' ', Timer(), ' ', ETA(), ' ']
-#     pbar = ProgressBar(widgets=widgets, maxval=num_batches).start()
-
-#     # Enable calibrators
-#     for name, module in model.named_modules():
-#         if isinstance(module, quant_nn.TensorQuantizer):
-#             if module._calibrator is not None:
-#                 module.disable_quant()
-#                 module.enable_calib()
-#             else:
-#                 module.disable()
-
-#     for i, batch_data in enumerate(data_loader):
-#         load_data_to_gpu(batch_data)
-#         model(batch_data)
-#         # if i % 10 == 0:
-#         #     print("calib data: ", i, "/", num_batches)
-#         pbar.update(i)
-#         if i >= num_batches:
-#             break
-#     pbar.finish()
-
-#     # Disable calibrators
-#     for name, module in model.named_modules():
-#         if isinstance(module, quant_nn.TensorQuantizer):
-#             if module._calibrator is not None:
-#                 module.enable_quant()
-#                 module.disable_calib()
-#             else:
-#                 module.enable()
-
-# def compute_amax(model, **kwargs):
-#     # Load calib result
-#     for name, module in model.named_modules():
-#         if isinstance(module, quant_nn.TensorQuantizer):
-#             if module._calibrator is not None:
-#                 if isinstance(module._calibrator, calib.MaxCalibrator):
-#                     module.load_calib_amax()
-#                 else:
-#                     module.load_calib_amax(**kwargs)
-#             print(F"{name:40}: {module}")
-#     model.cuda()
-
 def main():
     args, cfg = parse_config()
     if args.launcher == 'none':
@@ -229,7 +183,7 @@ def main():
     #         collect_stats(model, dataloader, num_batches=20)
     #         compute_amax(model, method="percentile", percentile=99.99) # max, mse, entropy
 
-    args.max_ckpt_save_num = max(args.max_ckpt_save_num, args.epochs - 49)
+    args.max_ckpt_save_num = 10 #max(args.max_ckpt_save_num, args.epochs - 49)
     # -----------------------start training---------------------------
     logger.info('**********************Start training %s/%s(%s)**********************'
                 % (cfg.EXP_GROUP_PATH, cfg.TAG, args.extra_tag))

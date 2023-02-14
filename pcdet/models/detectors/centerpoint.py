@@ -9,7 +9,7 @@ class CenterPoint(Detector3DTemplate):
         # self.gene_type = "OrderedDict([('blocks.0.0.out_channels.1', 1.0), ('blocks.0.0.kernel_size', 3), ('blocks.0.2.out_channels.1', 1.0), ('blocks.0.2.kernel_size', 3), ('blocks.0.4.out_channels.1', 1.0), ('blocks.0.4.kernel_size', 3), ('blocks.0.6.kernel_size', 3), ('blocks.1.0.out_channels.1', 1.0), ('blocks.1.0.kernel_size', 3), ('blocks.1.2.out_channels.1', 1.0), ('blocks.1.2.kernel_size', 3), ('blocks.1.4.out_channels.1', 1.0), ('blocks.1.4.kernel_size', 3), ('blocks.1.6.out_channels.1', 1.0), ('blocks.1.6.kernel_size', 3), ('blocks.1.8.out_channels.1', 1.0), ('blocks.1.8.kernel_size', 3), ('blocks.1.10.kernel_size', 3), ('blocks.2.0.out_channels.1', 1.0), ('blocks.2.0.kernel_size', 3), ('blocks.2.2.out_channels.1', 1.0), ('blocks.2.2.kernel_size', 3), ('blocks.2.4.out_channels.1', 1.0), ('blocks.2.4.kernel_size', 3), ('blocks.2.6.out_channels.1', 1.0), ('blocks.2.6.kernel_size', 3), ('blocks.2.8.out_channels.1', 1.0), ('blocks.2.8.kernel_size', 3), ('blocks.2.10.kernel_size', 3)])"        
         self.gene_type = None
         
-        self.export_onnx = model_cfg.get("EXPORT_ONNX",False)
+        self.export_onnx = model_cfg.DENSE_HEAD.get("EXPORT_ONNX",False)
         self.with_iou_loss = model_cfg.get("WITH_IOU_LOSS",False)
         self.with_iou_aware_loss = model_cfg.get("WITH_IOU_AWARE_LOSS",False)
         self.iou_weight = model_cfg.get("IOU_WEIGHT",1)
@@ -19,7 +19,7 @@ class CenterPoint(Detector3DTemplate):
     def forward(self, batch_dict):
         for cur_module in self.module_list:
             cur_module = getattr(self, cur_module)
-            if cur_module.__class__.__name__ == 'BEVBackboneSuperNet':
+            if "SuperNet" in cur_module.__class__.__name__:
                 batch_dict = cur_module(batch_dict, self.gene_type)
             else:
                 batch_dict = cur_module(batch_dict)

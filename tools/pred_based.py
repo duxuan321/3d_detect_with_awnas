@@ -49,7 +49,7 @@ def parse_config():
     parser.add_argument('--yaml_file_path', type=str, default=None)
     parser.add_argument('--controller_samples', type=int, default=1)
     parser.add_argument('--epoch_num', type=int, default=1)
-
+    parser.add_argument('--train_predictor', action='store_true', default=False, help='')
     args = parser.parse_args()
 
     cfg_from_yaml_file(args.cfg_file, cfg)
@@ -121,7 +121,6 @@ def main():
 
     model = build_network(model_cfg=cfg.MODEL, num_class=len(cfg.CLASS_NAMES), dataset=test_set)
     
-    #! load checkpoint
     model.load_params_from_file(filename=args.ckpt, logger=logger, to_cpu=dist_test)
     model.cuda()
 
@@ -147,88 +146,85 @@ def main():
     all_sample_size = args.controller_samples * args.epoch_num
     save_path = "/".join(args.ckpt.split('/')[:-2]) + "/evo_" + str(all_sample_size)
     # ----------------------------------------------------------------------
-    # model.backbone_2d.controller.set_mode("train")
-    # for ep in range(args.epoch_num):
-    #     ic(ep)
-    #     rollouts = model.backbone_2d.controller.sample(\
-    #         args.controller_samples, batch_size=rollout_batch_size, **kwargs)
-    #     for i, roll in enumerate(rollouts):
-    #         geno = roll.genotype
-    #         model.gene_type = geno
-
-    #         final_model = copy.deepcopy(model)
-    #         rollout_temp = final_model.backbone_2d.search_space.rollout_from_genotype(geno)
-    #         final_model.backbone_2d = final_model.backbone_2d.finalize_rollout(rollout_temp)
-    #         final_model.cuda()
-
-    #         # -------------------------------- 计算实际的out channel数值 ------------------------------------
-    #         setattr(roll, "arch_for_pred", OrderedDict())
-    #         if "BEVBackbone" in model_type:
-    #             curr_ratio_choices = np.array(list(roll.arch.values())[:-3].copy())
-    #             if fix_channel:
-    #                 out_channel = num_filters * curr_ratio_choices
-    #                 indices_mapping = num_filters.reshape(-1,1) * multi_ratio_choice.reshape(1,-1)
-    #             else:
-    #                 origin_channel = np.array(sum([(layer_nums[i] + 1) * [num_filters[i]] for i in range(len(layer_nums))], []))
-    #                 out_channel = origin_channel * curr_ratio_choices
-    #                 indices_mapping = origin_channel.reshape(-1,1) * multi_ratio_choice.reshape(1,-1)
-                
-    #         elif "MVLidarNet" in model_type:
-    #             curr_ratio_choices = np.array(list(roll.arch.values()).copy())
-    #             out_channel = num_filters * curr_ratio_choices
-    #             indices_mapping = num_filters.reshape(-1,1) * multi_ratio_choice.reshape(1,-1)
-
-    #         ind = [np.where(indices_mapping[i] == out_channel[i])[0][0] for i in range(len(out_channel))]
-    #         for i, (key,val) in enumerate(roll.arch.items()):
-    #             roll.arch_for_pred[key] = ind[i]
-    #             if i == len(ind) - 1:
-    #                 break
-    #         # ----------------------------------------------------------------------------------------------
-
-    #         # start evaluation
-    #         result_dict = eval_utils.eval_one_epoch(
-    #                 cfg, final_model, test_loader, epoch_id, logger, dist_test=dist_test,
-    #                 result_dir=eval_output_dir, save_to_file=args.save_to_file, geno=geno, get_flops=True)
-
-    #         if cfg.LOCAL_RANK == 0:
-    #             res = []
-    #             res.append(result_dict['flops'][0] * (-1))
-    #             res.append(result_dict['Car_3d/moderate_R40'])
-    #             res.append(result_dict['Pedestrian_3d/moderate_R40'])
-    #             res.append(result_dict['Cyclist_3d/moderate_R40'])
-    #             total_score_for_predictor = \
-    #                     (result_dict['Car_3d/moderate_R40'] + result_dict['Pedestrian_3d/moderate_R40'] + result_dict['Cyclist_3d/moderate_R40']) / 300
-    #             roll.set_perfs(OrderedDict(zip(['FLOPs', 'Car', 'Pedestrian', 'Cyclist'], res)))
-    #             roll.set_perfs(OrderedDict(zip(['reward'], [total_score_for_predictor]))) #!这里设置了reward
-
-    #     controller_loss = model.backbone_2d.controller.step(
-    #             rollouts, controller_optimizer, perf_name="reward") 
-
-    # if cfg.LOCAL_RANK == 0:
-    #     try:
-    #         model.backbone_2d.controller.save(save_path)
-    #     except pickle.PicklingError as e:
-    #         import pdb;pdb.set_trace()
-
-    with torch.no_grad():
-        model.backbone_2d.controller.load(save_path)
-        with model.backbone_2d.controller.begin_mode("eval"):
-        # model.backbone_2d.controller.set_mode("train")
-            # for ep in range(args.epoch_num):
-            rollouts = model.backbone_2d.controller.sample(all_sample_size, batch_size=rollout_batch_size, **kwargs)
-            results = {}
-            for roll in rollouts:
-                if -1 * roll.get_perf("FLOPs") >= 50 or roll.get_perf("reward") < 0.35:
-                    continue
-                results[str(roll.arch.values())] = [float(roll.get_perf("reward")), float(roll.get_perf("Car")), float(roll.get_perf("Pedestrian")), float(roll.get_perf("Cyclist")), -1 * roll.get_perf("FLOPs")]
     
-    sorted_result = {k:v for k,v in sorted(results.items(), key = lambda kv:kv[1][-1])}
-    yaml_file = save_path + "_results.yaml"
-    with open(yaml_file, 'w') as f:
-        f.write(yaml.dump(sorted_result, allow_unicode=True))
-        
+    if args.train_predictor:
+        model.backbone_2d.controller.set_mode("train")
+        for ep in range(args.epoch_num):
+            ic(ep)
+            rollouts = model.backbone_2d.controller.sample(\
+                args.controller_samples, batch_size=rollout_batch_size, **kwargs)
+            for i, roll in enumerate(rollouts):
+                geno = roll.genotype
+                model.gene_type = geno
 
+                final_model = copy.deepcopy(model)
+                rollout_temp = final_model.backbone_2d.search_space.rollout_from_genotype(geno)
+                final_model.backbone_2d = final_model.backbone_2d.finalize_rollout(rollout_temp)
+                final_model.cuda()
+
+                # start evaluation
+                result_dict = eval_utils.eval_one_epoch(
+                        cfg, final_model, test_loader, epoch_id, logger, dist_test=dist_test,
+                        result_dir=eval_output_dir, save_to_file=args.save_to_file, geno=geno, get_flops=True)
+
+                if cfg.LOCAL_RANK == 0:
+                    res = []
+                    res.append(result_dict['flops'][0] * (-1))
+                    res.append(result_dict['Car_3d/moderate_R40'])
+                    res.append(result_dict['Pedestrian_3d/moderate_R40'])
+                    res.append(result_dict['Cyclist_3d/moderate_R40'])
+                    total_score_for_predictor = \
+                            (result_dict['Car_3d/moderate_R40'] + result_dict['Pedestrian_3d/moderate_R40'] + result_dict['Cyclist_3d/moderate_R40']) / 300
+                    roll.set_perfs(OrderedDict(zip(['FLOPs', 'Car', 'Pedestrian', 'Cyclist'], res)))
+                    roll.set_perfs(OrderedDict(zip(['reward'], [total_score_for_predictor]))) #!这里设置了reward
+
+            controller_loss = model.backbone_2d.controller.step(
+                    rollouts, controller_optimizer, perf_name="reward", **kwargs) 
+
+        if cfg.LOCAL_RANK == 0:
+            try:
+                model.backbone_2d.controller.save(save_path)
+            except pickle.PicklingError as e:
+                import pdb;pdb.set_trace()
+
+    else:
+        with torch.no_grad():
+            ic(save_path)
+            model.backbone_2d.controller.load(save_path)
+            with model.backbone_2d.controller.begin_mode("eval"):
+            # model.backbone_2d.controller.set_mode("train")
+                # for ep in range(args.epoch_num):
+                rollouts = model.backbone_2d.controller.sample(all_sample_size, batch_size=rollout_batch_size, **kwargs)
+                results = {}
+                for roll in rollouts:
+                    ic(roll.arch)
+                    if -1 * roll.get_perf("FLOPs") >= 50 or roll.get_perf("reward") < 0.35:
+                        continue
+                    results[str(roll.arch.values())] = [float(roll.get_perf("reward")), float(roll.get_perf("Car")), float(roll.get_perf("Pedestrian")), float(roll.get_perf("Cyclist")), -1 * roll.get_perf("FLOPs")]
+    
+        sorted_result = {k:v for k,v in sorted(results.items(), key = lambda kv:kv[1][-1])}
+        yaml_file = save_path + "_results.yaml"
+        with open(yaml_file, 'w') as f:
+            f.write(yaml.dump(sorted_result, allow_unicode=True))
         
+    # else:
+    #     with torch.no_grad():
+    #         ic(save_path)
+    #         model.backbone_2d.controller.load(save_path)
+    #         standalone = [None] * 3
+    #         with model.backbone_2d.controller.begin_mode("eval"):
+    #             standalone[0] = [1.0, 1.0, 0.5, 1.0, 0.5, 1.0, 0.25, 0.5, 0.5, 0.25, 1.0, 1.0, 1, 1, 1.0, 0.25, 1, 1, 1]
+    #             standalone[1] = [1.0, 1.0, 0.5, 1.0, 1, 0.5, 0.5, 0.5, 1, 0.25, 1.0, 0.25, 1, 1, 1.0, 0.25, 1, 1, 1]
+    #             standalone[2] = [0.5, 1.0, 1.0, 1.0, 0.5, 1.0, 0.25, 1.0, 0.25, 0.25, 0.25, 0.25, 1.0, 0.125, 1.0, 0.125, 1, 1, 1]
+    #             rollouts = model.backbone_2d.controller.sample(3, batch_size=rollout_batch_size, **kwargs)
+    #             for n,roll in enumerate(rollouts):
+    #                 for i, (key,val) in enumerate(roll.arch.items()):
+    #                     roll.arch[key] = standalone[n][i]
+    #                 ic(roll.arch.values())
+    #             rollouts = model.backbone_2d.controller.get_arch_ind(rollouts, **kwargs)
+    #             padded_archs = model.backbone_2d.controller._pad_archs([r.arch_for_pred for r in rollouts])
+    #             scores = model.backbone_2d.controller.model.predict(padded_archs)
+
 
 if __name__ == '__main__':
     main()

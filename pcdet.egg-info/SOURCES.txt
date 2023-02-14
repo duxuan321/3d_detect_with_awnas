@@ -49,6 +49,7 @@ pcdet/models/backbones_2d/Darknet53.py
 pcdet/models/backbones_2d/MVLidarNet.py
 pcdet/models/backbones_2d/__init__.py
 pcdet/models/backbones_2d/base_bev_backbone.py
+pcdet/models/backbones_2d/dx_backbone.py
 pcdet/models/backbones_2d/ytx_backbone.py
 pcdet/models/backbones_2d/map_to_bev/__init__.py
 pcdet/models/backbones_2d/map_to_bev/conv2d_collapse.py

@@ -56,16 +56,18 @@ MODEL:
     MAP_TO_BEV:
         NAME: BEV_mvlidarnet
         NUM_BEV_FEATURES: 3
+        EXPORT_ONNX: False
 
     BACKBONE_2D:
         NAME: Standalone_MVLidarNet
-        ratio: [0.75, 1.0, 1.0, 0.5, 0.5, 0.5]
+        ratio: [1, 1.0, 1.0, 0.66, 1, 1]
         MULTI_INPUT_CHANNELS: [3, 7]
-        NUM_FILTERS: [32, 64, 128, 256, 512, 256] #![24, 48, 96, 192, 384, 192]
+        NUM_FILTERS: [24, 48, 96, 192, 384, 192] 
 
     DENSE_HEAD:
-        NAME: CenterHead  # IOU_AWARE
+        NAME: CenterHead 
         CLASS_AGNOSTIC: False
+        EXPORT_ONNX: False # 用于导出onnx模型
 
         CLASS_NAMES_EACH_HEAD: [
             ['Car', 'Pedestrian', 'Cyclist']
@@ -92,7 +94,7 @@ MODEL:
             GAUSSIAN_OVERLAP: 0.1      
             MIN_RADIUS: 2
 
-            # LABEL_ASSIGN_FLAG: v4       # v4必须要和loss一起更换
+            # LABEL_ASSIGN_FLAG: v4       # TODO:v4暂时效果不好，必须要和loss一起更换
             LABEL_ASSIGN_FLAG: v2
 
         LOSS_CONFIG:
@@ -104,7 +106,7 @@ MODEL:
 
         POST_PROCESSING:
             POSTPROCESS_TYPE: nms    
-            # POSTPROCESS_TYPE: maxpooling    # 第二种后处理方式：非nms
+            # POSTPROCESS_TYPE: maxpooling    # 第二种后处理方式，精度不如nms精度高
             SCORE_THRESH: 0.1
             POST_CENTER_LIMIT_RANGE: [0, -39.68, -3, 69.12, 39.68, 1]
             MAX_OBJ_PER_SAMPLE: 500
@@ -114,11 +116,12 @@ MODEL:
                 NMS_PRE_MAXSIZE: 4096
                 NMS_POST_MAXSIZE: 500
         
-        # 扩充项
+        # 扩充项：使用IOU loss
         # WITH_IOU_LOSS: True  # 使用iou loss
         IOU_LOSS_TYPE: GIOU_3D  # 目前有三种IOU损失函数：IOU_HEI、IOU_3D、GIOU_3D
         IOU_WEIGHT: 1   # iou_loss权重
 
+        # 扩充项：IOU预测分支的权重
         WITH_IOU_AWARE_LOSS: True   # IOU_AWARE
         IOU_AWARE_WEIGHT: 1      # IOU_AWARE
 

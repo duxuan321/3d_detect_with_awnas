@@ -59,6 +59,8 @@ class CenterHead(nn.Module):
         self.point_cloud_range = point_cloud_range
         self.voxel_size = voxel_size
         self.feature_map_stride = self.model_cfg.TARGET_ASSIGNER_CONFIG.get('FEATURE_MAP_STRIDE', None)
+        # new
+        self.export_onnx = self.model_cfg.get("EXPORT_ONNX",False)
 
         self.class_names = class_names
         self.class_names_each_head = []
@@ -73,6 +75,7 @@ class CenterHead(nn.Module):
         self.iou_loss_weight = self.model_cfg.get('IOU_WEIGHT', 1)
         self.iou_aware_flag = self.model_cfg.get('WITH_IOU_AWARE_LOSS', False)
         self.iou_aware_weight = self.model_cfg.get('IOU_AWARE_WEIGHT', 1)
+        self.iou_cls_weight = self.model_cfg.get('IOU_CLS_WEIGHT', [0.15,0.5,0.2])
         ############################################################################################################
 
         for cur_class_names in self.model_cfg.CLASS_NAMES_EACH_HEAD:
@@ -193,7 +196,6 @@ class CenterHead(nn.Module):
         Returns:
 
         """
-        # print("???")
         heatmap = gt_boxes.new_zeros(num_classes, feature_map_size[1], feature_map_size[0])
         ret_boxes = gt_boxes.new_zeros((5*num_max_objs, gt_boxes.shape[-1] - 1 + 1))
         inds = gt_boxes.new_zeros(5*num_max_objs).long()
@@ -812,6 +814,8 @@ class CenterHead(nn.Module):
             if self.iou_aware_flag:
                 pred_iou = pred_boxes[:,8:,:,:]
                 pred_boxes = pred_boxes[:,:8,:,:]
+            else:
+                pred_boxes = pred_boxes[:,:8,:,:]
             ##############################################################################
 
             reg_loss = self.reg_loss_func(
@@ -838,7 +842,6 @@ class CenterHead(nn.Module):
             if self.iou_aware_flag:
                 # 1.解算出检测框，得到gt iou
                 batch_size = target_boxes.shape[0]
-                batch_hm = pred_dict['hm'].sigmoid()
                 batch_center = pred_dict['center']
                 batch_center_z = pred_dict['center_z']
                 batch_dim = pred_dict['dim'].exp()
@@ -923,25 +926,27 @@ class CenterHead(nn.Module):
             batch_hm = pred_dict['hm'].sigmoid()
 
             ## IOU_AWARE:用iou更新预测分数 ###############################################################################
-            iou_pre = (pred_dict['iou']+1)*0.5
-            iou_pre = torch.clamp(iou_pre, min=0, max=1.)
-            
-            # 基本形式
-            # iou_aware_weight = 0.7
-            # batch_hm = torch.pow(batch_hm ,iou_aware_weight) * torch.pow(iou_pre ,1-iou_aware_weight)
+            if self.iou_aware_flag:
+ 
+                iou_pre = (pred_dict['iou']+1)*0.5
+                iou_pre = torch.clamp(iou_pre, min=0, max=1.)
+                
+                # 基本形式
+                # iou_aware_weight = 0.7
+                # batch_hm = torch.pow(batch_hm ,iou_aware_weight) * torch.pow(iou_pre ,1-iou_aware_weight)
 
-            # 第一种解码形式
-            # iou_aware_weight = [0.15,0.7,0.15]
-            iou_aware_weight = [0.15,0.75,0.15]
-            for i in range(3):
-                batch_hm[:,i:i+1,:,:] = torch.pow(batch_hm[:,i:i+1,:,:] ,iou_aware_weight[i]) * torch.pow(iou_pre ,1-iou_aware_weight[i])
+                # 第一种解码形式
+                iou_aware_weight = self.iou_cls_weight
+                
+                for i in range(len(iou_aware_weight)):
+                    batch_hm[:,i:i+1,:,:] = torch.pow(batch_hm[:,i:i+1,:,:] ,iou_aware_weight[i]) * torch.pow(iou_pre ,1-iou_aware_weight[i])
 
-            # 第二种解码形式
-            # batch_hm = batch_hm * iou_aware_weight + iou_pre * (1-iou_aware_weight)
-            # 第三种解码形式
-            # batch_hm = update_score_with_iou(batch_hm,iou_pre,iou_aware_weight)
+                # 第二种解码形式
+                # batch_hm = batch_hm * iou_aware_weight + iou_pre * (1-iou_aware_weight)
+                # 第三种解码形式
+                # batch_hm = update_score_with_iou(batch_hm,iou_pre,iou_aware_weight)
 
-            # print("???",iou_pre.max())
+                # print("???",iou_pre.max())
             #################################################################################################################
 
             batch_center = pred_dict['center']
@@ -997,10 +1002,19 @@ class CenterHead(nn.Module):
             'pred_labels': [],
         } for k in range(batch_size)]
 
-        stride =  self.model_cfg.TARGET_ASSIGNER_CONFIG.get('FEATURE_MAP_STRIDE',4)
+        stride =  self.model_cfg.TARGET_ASSIGNER_CONFIG.get('FEATURE_MAP_STRIDE',2)
         pre_max_size = post_process_cfg.get('PRE_MAX_SIZE', 40)
 
-        cls_preds = pred_dicts[0]['hm']
+        cls_preds = pred_dicts[0]['hm'].sigmoid()
+
+        if self.iou_aware_flag:
+            iou_pre = (pred_dicts[0]['iou']+1)*0.5
+            iou_pre = torch.clamp(iou_pre, min=0, max=1.)
+
+            iou_aware_weight = [0.1,0.55,0.275]
+            for i in range(3):
+                cls_preds[:,i:i+1,:,:] = torch.pow(cls_preds[:,i:i+1,:,:] ,iou_aware_weight[i]) * torch.pow(iou_pre ,1-iou_aware_weight[i])
+
         box_preds = torch.cat([pred_dicts[0]['center'],pred_dicts[0]['center_z'],pred_dicts[0]['dim'].exp(),pred_dicts[0]['rot']],dim=1)
 
         # print(box_preds.shape)
@@ -1033,6 +1047,18 @@ class CenterHead(nn.Module):
         pred_dicts = []
         for head in self.heads_list:
             pred_dicts.append(head(x))
+
+        # new:export onnx
+        if self.export_onnx:
+            print("??????",pred_dicts[0].keys(),self.export_onnx) 
+            data_dict["export_cls_preds"] = pred_dicts[0]['hm']
+            data_dict["center"] = pred_dicts[0]['center']
+            data_dict["center_z"] = pred_dicts[0]['center_z']
+            data_dict["dim"] = pred_dicts[0]['dim']
+            data_dict["rot"] = pred_dicts[0]['rot']
+            if 'iou' in pred_dicts[0].keys():
+                data_dict['iou'] = pred_dicts[0]['iou']
+            return data_dict
 
         if self.training:
             target_dict = self.assign_targets(
@@ -1152,9 +1178,7 @@ def get_yaw_v2(direction):
     return torch.atan2(direction[:, 1:2],direction[:, 0:1])
 
 def postprocessing_v2(cls_preds, box_preds, point_cloud_range, grid_size, num_class, stride, score_thresh, pre_max_size, ret):
-    # cls_preds_temp = _sigmoid(cls_preds)
-    cls_preds_temp = cls_preds.sigmoid()
-    detections = decode(cls_preds_temp, box_preds[:,:2,:,:],box_preds[:,6:,:,:],box_preds[:,2:3,:,:],box_preds[:,3:6,:,:], K=pre_max_size)
+    detections = decode(cls_preds, box_preds[:,:2,:,:],box_preds[:,6:,:,:],box_preds[:,2:3,:,:],box_preds[:,3:6,:,:], K=pre_max_size)
 
     for i in range(detections.shape[0]):
         index = detections[i,:,0] > score_thresh

@@ -116,7 +116,7 @@ def nms_gpu(boxes, scores, thresh, pre_maxsize=None, **kwargs):
         order = order[:pre_maxsize]
 
     boxes = boxes[order].contiguous()
-    keep = torch.LongTensor(boxes.size(0))
+    keep = torch.LongTensor(int(boxes.size(0)))
     num_out = iou3d_nms_cuda.nms_gpu(boxes, keep, thresh)
     return order[keep[:num_out].cuda()].contiguous(), None
 

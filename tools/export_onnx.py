@@ -104,10 +104,11 @@ class ExportModel(nn.Module):
         # export_boxes = output
 
         cls_preds = output['export_cls_preds']
-        box_preds = output['export_box_preds']
+        # box_preds = output['export_box_preds']
 
-        return cls_preds,box_preds
-
+        # return cls_preds,box_preds
+        return output['export_cls_preds'], output["center"], output["center_z"], output["dim"],\
+            output["rot"], output["iou"]
 def main():
     args, cfg = parse_config()
     if args.launcher == 'none':
@@ -258,7 +259,7 @@ def main():
             torch.onnx.export(export_model, (bev_map), onnx_path, verbose=True, training=False,
                               operator_export_type=torch.onnx.OperatorExportTypes.ONNX_ATEN_FALLBACK, opset_version=9,
                               input_names=['bev_map'])
-            print("导出onnx成功")
+            print("导出onnx成功", onnx_path)
 
 if __name__ == '__main__':
     main()

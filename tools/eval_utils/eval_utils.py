@@ -43,6 +43,7 @@ def eval_one_epoch(cfg, model, dataloader, epoch_id, logger, dist_test=False, sa
     if dist_test:
         num_gpus = torch.cuda.device_count()
         local_rank = cfg.LOCAL_RANK % num_gpus
+        ic(local_rank)
         model = torch.nn.parallel.DistributedDataParallel(
                 model,
                 device_ids=[local_rank],

@@ -10,6 +10,7 @@ from aw_nas.ops import get_op, MobileNetV2Block
 from aw_nas.utils import feature_level_to_stage_index
 from aw_nas.germ.utils import divisor_fn
 from aw_nas.controller.evo import ParetoEvoController
+from aw_nas.controller.base import BaseController
 from icecream import ic 
 import functools
 from typing import List
@@ -167,18 +168,19 @@ class BEVBackboneSuperNet(germ.GermSuperNet):
                 pretrained_path=None,
                 fix_block_channel=True,
                 force_use_ordinal_channel_handler=False,
-                schedule_cfg={},):
+                schedule_cfg={},
+                controller_type=None,
+                controller_cfg=None):
         # nn.Module.__init__(self)
         super().__init__(search_space)
 
         self.depth_choices = depth_choices
         self.kernel_sizes = kernel_sizes
         self.mult_ratio_choices = mult_ratio_choices
+        self.fix_block_channel = fix_block_channel
 
         self.model_cfg = model_cfg
         self.eval_mode = False
-
-        self.controller = ParetoEvoController(search_space, rollout_type="germ", perf_names=['FLOPs', 'Car', 'Pedestrian', 'Cyclist'], mutate_kwargs={'mutate_num': 1}) #todo: device? mutate_kwargs?
 
         if self.model_cfg.get('LAYER_NUMS', None) is not None:
             assert len(self.model_cfg.LAYER_NUMS) == len(self.model_cfg.LAYER_STRIDES) == len(self.model_cfg.NUM_FILTERS)
@@ -206,23 +208,25 @@ class BEVBackboneSuperNet(germ.GermSuperNet):
         self.blocks = nn.ModuleList()
         self.deblocks = nn.ModuleList()
         prev_channels = input_channels
+        total_choice_num = len(layer_nums) * len(mult_ratio_choices) if self.fix_block_channel else (sum(layer_nums) + len(layer_nums)) * len(mult_ratio_choices)
 
         with self.begin_searchable() as ctx:
             for idx in range(num_levels):
                 # 每个block内部out channel相同
-                if fix_block_channel:
+                if self.fix_block_channel:
                     cur_channels = (germ.Choices(mult_ratio_choices, epoch_callback=width_choices_cb) * num_filters[idx]).apply(divisor_fn)
                 cur_layer = []
                 for k in range(layer_nums[idx] + 1):
                     # 每个block内部的out channel不同
-                    if not fix_block_channel:
+                    if not self.fix_block_channel:
                         cur_channels = (germ.Choices(mult_ratio_choices, epoch_callback=width_choices_cb) * num_filters[idx]).apply(divisor_fn)
                     cur_layer.extend([germ.SearchableConvBNBlock(
                         ctx, 
                         prev_channels, 
                         cur_channels, 
-                        kernel_size=germ.Choices(kernel_sizes, epoch_callback=kernel_choices_cb), 
-                        stride=layer_strides[idx] if k==0 else 1),
+                        kernel_size=germ.Choices(kernel_sizes, epoch_callback=kernel_choices_cb) if kernel_sizes else 3, 
+                        stride=layer_strides[idx] if k==0 else 1,
+                        force_use_ordinal_channel_handler=force_use_ordinal_channel_handler),
                         nn.ReLU()])
                     prev_channels = cur_channels
                 self.blocks.append(nn.Sequential(*cur_layer))
@@ -253,6 +257,11 @@ class BEVBackboneSuperNet(germ.GermSuperNet):
                 #         nn.BatchNorm2d(num_upsample_filters[idx], eps=1e-3, momentum=0.01),
                 #         nn.ReLU()
                 #     ))
+
+        device = torch.cuda.current_device()
+        controller_cfg['arch_network_cfg']['arch_embedder_cfg']['total_choice_num'] = total_choice_num
+        ic(total_choice_num)
+        self.controller = BaseController.get_class_(controller_type)(search_space, device, rollout_type="germ", **controller_cfg)
 
         c_in = sum(num_upsample_filters)
         if len(upsample_strides) > num_levels:

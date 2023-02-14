@@ -58,7 +58,7 @@ MODEL:
         NUM_BEV_FEATURES: 3
 
     BACKBONE_2D:
-        NAME: Standalone_MVLidarNet
+        NAME: Standalone_Pointpillar
         ratio: [0.75, 1.0, 1.0, 0.5, 0.5, 0.5]
         MULTI_INPUT_CHANNELS: [3, 7]
         NUM_FILTERS: [32, 64, 128, 256, 512, 256] #![24, 48, 96, 192, 384, 192]
