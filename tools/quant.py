@@ -93,10 +93,12 @@ class QuantModel(nn.Module):
 
     def forward(self, batch_dict):
         bev_map = batch_dict['bev_map']
-        cls_preds, box_preds = self.q_model([bev_map, ])
+        pred_dicts = self.q_model([bev_map, ])
+        hm, center, center_z, dim, rot, iou = pred_dicts
+        cls_preds, box_preds = hm, torch.cat([center, center_z, dim, rot],dim=1)
         # box_preds = [box_preds_offset, box_preds_z, box_preds_dims, box_preds_yaw]
         batch_dict.update({'cls_preds': cls_preds, 'box_preds': box_preds})
-        batch_dict = self.model.dense_head.forward_quant(batch_dict)
+        batch_dict = self.model.dense_head.forward_quant(batch_dict, pred_dicts)
 
         pred_dicts, recall_dicts = self.model.post_processing(batch_dict)
         return pred_dicts, recall_dicts
@@ -165,7 +167,7 @@ def main():
     work_dir = '../quant_results'
     os.makedirs(work_dir, exist_ok=True)
     onnx_dir = cfg.ROOT_DIR / 'output' / cfg.EXP_GROUP_PATH / cfg.TAG / args.extra_tag
-    onnx_path = os.path.join(onnx_dir, 'deploy.onnx')
+    onnx_path = os.path.join(onnx_dir, args.ckpt[args.ckpt.rindex('/')+1:args.ckpt.rindex('.')] + '_' + args.extra_tag + '.onnx')
 
 
     datalist = []
@@ -179,7 +181,7 @@ def main():
                                 output_dir=work_dir + '/ir_output_mvlidarnet', input_vars=datalist[0], enable_equalization=True)
 
     run_compiler(input_dir=work_dir + '/ir_output_mvlidarnet', output_dir=work_dir + '/compiler_output_mvlidarnet',
-                 enable_cmodel=True, enable_rtl_model=True, enable_profiler=True)
+                 enable_cmodel=True, enable_profiler=True)
 
     quant_model = QuantModel(model, q_model)
     with torch.no_grad():

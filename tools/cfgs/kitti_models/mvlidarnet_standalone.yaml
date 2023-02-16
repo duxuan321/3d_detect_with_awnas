@@ -60,7 +60,7 @@ MODEL:
 
     BACKBONE_2D:
         NAME: Standalone_MVLidarNet
-        ratio: [1, 1.0, 1.0, 0.66, 1, 1]
+        ratio: [1, 1.0, 1.0, 1, 1, 1]
         MULTI_INPUT_CHANNELS: [3, 7]
         NUM_FILTERS: [24, 48, 96, 192, 384, 192] 
 

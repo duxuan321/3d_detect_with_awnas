@@ -14,5 +14,5 @@ do
 done
 echo $PORT
 
-python -m torch.distributed.launch --nproc_per_node=${NGPUS} --master_port 29513 train.py --launcher pytorch ${PY_ARGS}
+python -m torch.distributed.launch --nproc_per_node=${NGPUS} --master_port 29514 train.py --launcher pytorch ${PY_ARGS}
 

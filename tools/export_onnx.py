@@ -100,14 +100,8 @@ class ExportModel(nn.Module):
         global data_dict_info
         data_dict_info.update(batch_dict)
         output = self.model(data_dict_info)
-        # export_boxes = output['export_boxes']
-        # export_boxes = output
 
-        cls_preds = output['export_cls_preds']
-        # box_preds = output['export_box_preds']
-
-        # return cls_preds,box_preds
-        return output['export_cls_preds'], output["center"], output["center_z"], output["dim"],\
+        return output['hm'], output["center"], output["center_z"], output["dim"],\
             output["rot"], output["iou"]
 def main():
     args, cfg = parse_config()

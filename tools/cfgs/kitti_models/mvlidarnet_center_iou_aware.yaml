@@ -56,66 +56,68 @@ MODEL:
     MAP_TO_BEV:
         NAME: BEV_mvlidarnet
         NUM_BEV_FEATURES: 3
+        EXPORT_ONNX: true
 
     BACKBONE_2D:
-        NAME: MVLidarNetBackboneSuperNet
+        NAME: MVLidarNetBackbone
         MULTI_INPUT_CHANNELS: [3, 7]
-        NUM_FILTERS: [24, 48, 96, 192, 384, 192] #![16, 32, 64, 128, 256] [32, 64, 128, 256, 512, 256] 
-        SEARCH_CFG:
-          search_space_cfg: {}
-          supernet_cfg:
-            force_use_ordinal_channel_handler: True #!False
-            mult_ratio_choices: [0.5, 0.66, 1]
-            schedule_cfg:
-              mult_ratio_choices:
-                  - epoch: 0
-                    choices: [1]
-                  - epoch: 51
-                    choices: [0.66, 1]
-                  - epoch: 71
-                    choices: [0.5, 0.66, 1]
-            controller_type: predictor-based
-            controller_cfg:
-              mode: eval
-              inner_controller_type: evo #random_sample
-              inner_controller_cfg: #
-                population_size: 30
-                parent_pool_size: 5
-                elimination_strategy: perf
-                eval_sample_strategy: all
-              arch_network_type: pointwise_comparator
-              arch_network_cfg:
-                arch_embedder_cfg: {}
-                arch_embedder_type: naive_embedder
-                compare_loss_type: margin_linear
-                compare_margin: 0.1
-                mlp_dropout: 0.1
-                mlp_hiddens: [256, 256, 256]
-                optimizer: {lr: 0.001, type: Adam}
-                scheduler: null
-              inner_sample_n: 1
-              inner_samples: 1
-              inner_steps: 50
-              inner_report_freq: 10
-              predict_batch_size: 50
-              inner_random_init: true # try false with perf
-              inner_iter_random_init: false
-              begin_train_num: 0 #!200
-              predictor_train_cfg:
-                batch_size: 50
-                compare: false #!true
-                compare_threshold: 0.0
-                epochs: 100
-                max_compare_ratio: 4.0
-                n_cross_valid: null
-                num_workers: 2
-                report_freq: 50
-                #! train_valid_split: 0.9
-              schedule_cfg: null     
+        # NUM_FILTERS: [24, 48, 96, 192, 384, 192] #![16, 32, 64, 128, 256] [32, 64, 128, 256, 512, 256] 
+        # SEARCH_CFG:
+        #   search_space_cfg: {}
+        #   supernet_cfg:
+        #     force_use_ordinal_channel_handler: True #!False
+        #     mult_ratio_choices: [0.5, 0.66, 1]
+        #     schedule_cfg:
+        #       mult_ratio_choices:
+        #           - epoch: 0
+        #             choices: [1]
+        #           - epoch: 51
+        #             choices: [0.66, 1]
+        #           - epoch: 71
+        #             choices: [0.5, 0.66, 1]
+        #     controller_type: predictor-based
+        #     controller_cfg:
+        #       mode: eval
+        #       inner_controller_type: evo #random_sample
+        #       inner_controller_cfg: #
+        #         population_size: 30
+        #         parent_pool_size: 5
+        #         elimination_strategy: perf
+        #         eval_sample_strategy: all
+        #       arch_network_type: pointwise_comparator
+        #       arch_network_cfg:
+        #         arch_embedder_cfg: {}
+        #         arch_embedder_type: naive_embedder
+        #         compare_loss_type: margin_linear
+        #         compare_margin: 0.1
+        #         mlp_dropout: 0.1
+        #         mlp_hiddens: [256, 256, 256]
+        #         optimizer: {lr: 0.001, type: Adam}
+        #         scheduler: null
+        #       inner_sample_n: 1
+        #       inner_samples: 1
+        #       inner_steps: 50
+        #       inner_report_freq: 10
+        #       predict_batch_size: 50
+        #       inner_random_init: true # try false with perf
+        #       inner_iter_random_init: false
+        #       begin_train_num: 0 #!200
+        #       predictor_train_cfg:
+        #         batch_size: 50
+        #         compare: false #!true
+        #         compare_threshold: 0.0
+        #         epochs: 100
+        #         max_compare_ratio: 4.0
+        #         n_cross_valid: null
+        #         num_workers: 2
+        #         report_freq: 50
+        #         #! train_valid_split: 0.9
+        #       schedule_cfg: null     
 
     DENSE_HEAD:
         NAME: CenterHead  # IOU_AWARE
         CLASS_AGNOSTIC: False
+        EXPORT_ONNX: true
 
         CLASS_NAMES_EACH_HEAD: [
             ['Car', 'Pedestrian', 'Cyclist']

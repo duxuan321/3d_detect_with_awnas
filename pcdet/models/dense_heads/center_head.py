@@ -1051,7 +1051,7 @@ class CenterHead(nn.Module):
         # new:export onnx
         if self.export_onnx:
             print("??????",pred_dicts[0].keys(),self.export_onnx) 
-            data_dict["export_cls_preds"] = pred_dicts[0]['hm']
+            data_dict["hm"] = pred_dicts[0]['hm']
             data_dict["center"] = pred_dicts[0]['center']
             data_dict["center_z"] = pred_dicts[0]['center_z']
             data_dict["dim"] = pred_dicts[0]['dim']
@@ -1090,6 +1090,34 @@ class CenterHead(nn.Module):
 
         return data_dict
 
+    def forward_quant(self, data_dict, pred_dicts_in):
+        name = ['hm', 'center', 'center_z', 'dim', 'rot', 'iou']
+        pred_dicts = []
+        dict = {}
+        for i in range(len(name)):
+            dict[name[i]] = pred_dicts_in[i]
+        pred_dicts.append(dict)
+        # import pdb;pdb.set_trace()
+        if not self.training or self.predict_boxes_when_training:
+            if(self.postprocess=="nms"):
+                pred_dicts = self.generate_predicted_boxes(
+                    data_dict['batch_size'], pred_dicts
+                )
+            elif(self.postprocess=="maxpooling"):
+                pred_dicts = self.generate_predicted_boxes_v2(
+                    data_dict['batch_size'], pred_dicts
+                )
+
+            if self.predict_boxes_when_training:
+                rois, roi_scores, roi_labels = self.reorder_rois_for_refining(data_dict['batch_size'], pred_dicts)
+                data_dict['rois'] = rois
+                data_dict['roi_scores'] = roi_scores
+                data_dict['roi_labels'] = roi_labels
+                data_dict['has_class_labels'] = True
+            else:
+                data_dict['final_box_dicts'] = pred_dicts
+
+        return data_dict
 
 
 def _sigmoid(x):
